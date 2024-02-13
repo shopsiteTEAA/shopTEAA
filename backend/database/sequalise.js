@@ -10,6 +10,7 @@ const schema = new Sequelize("teaa", "root", "21018965", {
 });
 
 
+
 const user = {
   iduser: {
     type: DataTypes.INTEGER,
@@ -100,16 +101,15 @@ Review_rate.belongsTo(User, { foreignKey: "user_iduser" });
 Review_rate.belongsTo(Product, { foreignKey: "product_idproduct" });
 
 
-
-schema.authenticate()
-  .then(() => {
-    console.log("Connection has been established successfully.");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-
 schema.sync({alter : true})
+
+module.exports ={
+  User : User,
+  Product : Product,
+  Whichlist :Whichlist,
+  Review_rate :Review_rate,
+  Panier : Panier,
+
+}
 
 
