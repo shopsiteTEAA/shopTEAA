@@ -1,10 +1,13 @@
 
 import './App.css';
-
+import AboutUsPage from "./Components/AboutUs"
+import image from './'
 function App() {
   return (
     <div className="App">
-        <h1>amine</h1>
+      
+        <AboutUsPage/>
+
     </div>
   );
 }
