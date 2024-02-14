@@ -1,13 +1,16 @@
-
 import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MainPageSaller from './seller/MainPageSaller';
+
 
 function App() {
   return (
-    <div className="App">
-    <h1 className="text-3xl underline">
-      <h1>hello</h1>
-    </h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainPageSaller/>}>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
