@@ -18,13 +18,13 @@ const user = {
     primaryKey: true,
     allowNull: false
   },
-  firstname: DataTypes.STRING,
-  lastname: DataTypes.STRING,
-  email: DataTypes.STRING,
-  role: DataTypes.STRING,
+  firstname: {type : DataTypes.STRING,allowNull:false},
+  lastname: {type : DataTypes.STRING,allowNull:false},
+  email: {type : DataTypes.STRING,allowNull:false},
+  role: {type : DataTypes.STRING,allowNull:false},
   phone: DataTypes.INTEGER,
-  adress: DataTypes.STRING,
-  pwd: DataTypes.STRING,
+  adress: {type : DataTypes.STRING,allowNull:false},
+  pwd: {type : DataTypes.STRING,allowNull:false},
 };
 
 const product = {
@@ -34,22 +34,21 @@ const product = {
     primaryKey: true,
     allowNull: false
   },
-  name: DataTypes.STRING,
-  category: DataTypes.STRING,
+  name: {type : DataTypes.STRING,allowNull:false},
+  category: {type : DataTypes.STRING,allowNull:false},
   rate: DataTypes.INTEGER,
-  price: DataTypes.INTEGER,
-  status: DataTypes.STRING,
+  status: {type : DataTypes.STRING,allowNull:false},
   initalprice: DataTypes.INTEGER,
   currentprice: DataTypes.INTEGER,
-  imgurlmain: DataTypes.STRING,
-  colors1: DataTypes.STRING,
-  colors2: DataTypes.STRING,
-  colors3: DataTypes.STRING,
-  colors4: DataTypes.STRING,
-  img1: DataTypes.STRING,
-  img2: DataTypes.STRING,
-  img3: DataTypes.STRING,
-  img4: DataTypes.STRING,
+  imgurlmain: {type : DataTypes.STRING,allowNull:false},
+  colors1: {type : DataTypes.STRING,allowNull:false,defaultValue: 'white' },
+  colors2: {type : DataTypes.STRING,allowNull:false,defaultValue: 'white' },
+  colors3: {type : DataTypes.STRING,allowNull:false,defaultValue: 'white' },
+  colors4: {type : DataTypes.STRING,allowNull:false,defaultValue: 'white' },
+  img1: {type : DataTypes.STRING,allowNull:false ,defaultValue : 'img.com'},
+  img2: {type : DataTypes.STRING,allowNull:false ,defaultValue : 'img.com'},
+  img3: {type : DataTypes.STRING,allowNull:false ,defaultValue : 'img.com'},
+  img4: {type : DataTypes.STRING,allowNull:false ,defaultValue : 'img.com'},
   quantity: DataTypes.INTEGER,
   description: DataTypes.TEXT,
 };
@@ -101,7 +100,7 @@ Review_rate.belongsTo(User, { foreignKey: "user_iduser" });
 Review_rate.belongsTo(Product, { foreignKey: "product_idproduct" });
 
 
-schema.sync({alter : true})
+schema.sync()
 
 module.exports ={
   User : User,
