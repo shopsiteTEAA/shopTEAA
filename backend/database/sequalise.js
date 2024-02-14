@@ -4,7 +4,7 @@ const database = process.env.DATABASE;
 const username = process.env.USERNAME;
 const pwd = process.env.PWD;
 
-const schema = new Sequelize("teaa", "root", "21018965", {
+const schema = new Sequelize("teaa", "root1", "Centrale2020@", {
   host: "localhost",
   dialect: "mysql",
 });
@@ -101,7 +101,7 @@ Review_rate.belongsTo(User, { foreignKey: "user_iduser" });
 Review_rate.belongsTo(Product, { foreignKey: "product_idproduct" });
 
 
-schema.sync({alter : true})
+schema.sync()
 
 module.exports ={
   User : User,
@@ -109,7 +109,6 @@ module.exports ={
   Whichlist :Whichlist,
   Review_rate :Review_rate,
   Panier : Panier,
-
 }
 
 
