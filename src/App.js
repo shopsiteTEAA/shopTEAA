@@ -1,16 +1,19 @@
 import './App.css';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import AboutUs from "./Components/AboutUs.jsx";
 import Contact from "./Components/Contact.jsx";
 
-import { BrowserRouter as Router, Route} from 'react-router-dom'
+
 
 function App() {
   return (
     <div className="App">
-    <Router>
-        <Route path="/AboutUs" component={AboutUs} />
-        <Route path="/Contact" component={Contact} />
-    </Router>
+     <Router>
+        <Routes>
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
