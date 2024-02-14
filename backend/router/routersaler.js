@@ -10,6 +10,6 @@ RouterSaler.get('/productcategory/:category',controllersaler.GetProductByCatigor
 RouterSaler.get('/promoprod',controllersaler.GetProductForPromo)
 
 RouterSaler.get('/toprateprod',controllersaler.GetTopRatedProduct)
-
+RouterSaler.get('/getproduct/:id',controllersaler.GetProductById)
 
 module.exports=RouterSaler

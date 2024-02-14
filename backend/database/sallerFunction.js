@@ -22,6 +22,12 @@ const getallproduct =()=>{
     return Product.findAll()
 }
 
+// get specific product by id 
+
+const getproductbyid=(id)=>{
+    return Product.findAll({where:{idproduct:id}})
+}
+
 //get product available 
 const getallproductavailable =()=>{
     return Product.findAll({where:{status : 'available'}})
@@ -43,6 +49,7 @@ const gettopratedproduct =()=>{
     return Product.findAll({where:{rate:{ [Op.gt] : 4} }})
 }
 
+
 module.exports={
     gettopratedproduct:gettopratedproduct,
     getproductforpromo:getproductforpromo,
@@ -52,6 +59,7 @@ module.exports={
     deleteproduct:deleteproduct,
     updateproduct:updateproduct,
     insertproduct:insertproduct,
+    getproductbyid:getproductbyid
     
 
 }

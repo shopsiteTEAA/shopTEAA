@@ -114,6 +114,16 @@ module.exports={
         catch(err){
             console.log('err in getting promo product',err);
         }
-    } 
+    } ,
+    GetProductById : async (req,res)=>{
+        const id = req.params.id
+        try{
+            const results = await prod.getproductbyid(id)
+            res.status(200).json(results)
+        }
+        catch(err){
+            console.log('err in getting product',err);
+        }
+    }
 
 }
