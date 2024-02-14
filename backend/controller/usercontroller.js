@@ -12,13 +12,13 @@ module.exports = {
       res.status(200).json(result);
     } catch (err) {
       console.log(err);
-      res.status(500).json(err); // Send error response
+      res.status(500).json(err); 
     }
   },
 
   addAccount: async (req, res) => {
     const { firstname, lastname, role, phone, adress, email, pwd } = req.body;
-    const hashed = await bcrypt.hash(pwd, 10); // Await the bcrypt hash operation
+    const hashed = await bcrypt.hash(pwd, 10); 
 
     try {
       const values = {
@@ -33,15 +33,15 @@ module.exports = {
 
       const results = await userFunction.findUser(email, firstname);
       console.log(results)
-      if (results !== null) { // Corrected the comparison
+      if (results !== null) { 
         res.status(409).send("User with the same email or name already exists");
       } else {
-        await userFunction.saveUser(values); // Await the saveUser operation
+        await userFunction.saveUser(values);
         res.status(200).send("created");
       }
     } catch (err) {
       console.log(err);
-      res.status(500).json(err); // Send error response
+      res.status(500).json(err);
     }
   },
 
