@@ -1,21 +1,16 @@
 import './App.css';
-<<<<<<< HEAD
-import AboutUsPage from "./Components/AboutUs"
-import image from './'
-function App() {
-  return (
-    <div className="App">
-      
-        <AboutUsPage/>
+import AboutUs from "./Components/AboutUs.jsx";
+import Contact from "./Components/Contact.jsx";
 
-=======
-import Signup from './components/Signup';
-
+import { BrowserRouter as Router, Route} from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
->>>>>>> 51fc6712e600398a4b6d152f5619c473cd209866
+    <Router>
+        <Route path="/AboutUs" component={AboutUs} />
+        <Route path="/Contact" component={Contact} />
+    </Router>
     </div>
   );
 }
