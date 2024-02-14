@@ -4,7 +4,7 @@ const database = process.env.DATABASE;
 const username = process.env.USERNAME;
 const pwd = process.env.PWD;
 
-const schema = new Sequelize("teaa", "root", "21018965", {
+const schema = new Sequelize("teaa", "root", "choclata", {
   host: "localhost",
   dialect: "mysql",
 });

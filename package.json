@@ -25,8 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start_back" : "nodemon backend/server.js"
-    
+    "start_back": "nodemon backend/server.js"
   },
   "eslintConfig": {
     "extends": [
@@ -45,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
   }
 }
