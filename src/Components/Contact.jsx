@@ -1,8 +1,15 @@
 import React from 'react'
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+import Navbar from '../Ccomponents/Navbar';
+import MinHeader
+ from '../Ccomponents/MinHeader';
 
 const Contact = () => {
   return (
+    <div>
+         <MinHeader/>
+      <Navbar/>
+        
     <div className="container mx-auto py-8 bg-slate-100">
             <h1 className="text-7xl font-bold text-gray-800 mb-4">Contact Us</h1>
             <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
@@ -34,6 +41,7 @@ const Contact = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
   )
 }

@@ -28,6 +28,7 @@ const getproductbyid=(id)=>{
     return Product.findAll({where:{idproduct:id}})
 }
 
+
 //get product available 
 const getallproductavailable =()=>{
     return Product.findAll({where:{status : 'available'}})

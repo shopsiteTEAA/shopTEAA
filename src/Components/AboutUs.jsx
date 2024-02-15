@@ -1,7 +1,13 @@
 import React from 'react'
 import aboutUsImg from "./assests/download.jpg"
+import Navbar from "../Ccomponents/Navbar.jsx"
+import MinHeader from '../Ccomponents/MinHeader.jsx'
+
 const AboutUs = () => {
   return (
+    <div>
+      <MinHeader/>
+      <Navbar/>
     <div className=" bg-slate-100 py-12 flex flex-col lg:flex-row">
     <div className="max-w-4xl mx-auto px-4 lg:mr-10 lg:w-1/2">
       <h2 className="text-7xl font-bold text-gray-800 mb-4">About Us</h2>
@@ -14,6 +20,7 @@ const AboutUs = () => {
     <div className="lg:w-1/2">
       <img className=" w-full shadow-lg rounded-xl" src={aboutUsImg} alt="About Us Image" />
     </div>
+  </div>
   </div>
   )
 }
