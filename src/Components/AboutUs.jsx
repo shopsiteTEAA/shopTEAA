@@ -8,7 +8,7 @@ const AboutUs = () => {
     <div>
       <MinHeader/>
       <Navbar/>
-    <div className=" bg-slate-100 py-12 flex flex-col lg:flex-row">
+    <div className=" bg-white py-12 flex flex-col lg:flex-row">
     <div className="max-w-4xl mx-auto px-4 lg:mr-10 lg:w-1/2">
       <h2 className="text-7xl font-bold text-gray-800 mb-4">About Us</h2>
       <p className="text-lg text-gray-700 mb-6">
