@@ -2,8 +2,13 @@ import React, { useState } from 'react'
 
 const Cloudinary = () => {
   const [file,setFile]=useState("")
+
+  const previewFiles= (file)=>{
+
+  }
   const handleChange = (e) =>{    //(e) = event 
-    const file = e.target.files[0];           //Now we need to convert this file to something readble in js
+    const file = e.target.files[0];
+    setFile(file)          //Now we need to convert this file to something readble in js
     console.log(file);
     // setFile(e.target.files)
   }  
