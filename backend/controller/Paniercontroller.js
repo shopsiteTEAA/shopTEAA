@@ -24,8 +24,8 @@ module.exports = {
   addtoCart: async (req, res) => {
     const obj ={
       sum : req.body.sum,
-      user_iduser : req.params.idu,
-      product_idproduct : req.params.idp
+      userIduser : req.params.idu,
+      productIdproduct : req.params.idp
     }
     try {
       const newCart = await Panier.addtopanier(obj);

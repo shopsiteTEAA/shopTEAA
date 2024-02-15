@@ -5,6 +5,7 @@ import {
   faCartShopping,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -15,7 +16,7 @@ function Navbar() {
           <li>
             <a href="Home">Home</a>
           </li>
-          <li><a href="">Add Product</a></li>
+          <Link to={'/seler/addProduct'}><li><a>Add Product</a></li></Link>
           <li><a href="">See ALL Product</a></li>
           <li><a href="">Log out</a></li>
         </ul>

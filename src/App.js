@@ -4,6 +4,8 @@ import Cart from './front/cart/cart.jsx';
 import Details from './front/details/details.jsx';
 import Description from "./front/details/description.jsx";
 
+import MainPageSaller from './seller/MainPageSaller';
+import AddProduct from './seller/AddProduct';
 
 
 function App() {
@@ -13,6 +15,9 @@ function App() {
   {/*<Route path="/" element={<Cart/>}></Route>*/}
   {/*<Route path="/details" element={<Details/>}></Route>*/}
   <Route path="/" element={<Description/>}></Route>
+        <Route path="/seler" element={<MainPageSaller/>}/>
+        <Route path='/seler/addProduct' element={<AddProduct/>}/>
+        
       </Routes>
     </BrowserRouter>
   );
