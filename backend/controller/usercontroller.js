@@ -16,6 +16,38 @@ module.exports = {
     }
   },
 
+  DeleteUser:async (req,res)=>{
+    const id = req.params.iduser
+    try{
+      const results = await user.deleteuser(id)
+      res.status(203).send('deleted !')
+  }
+  catch(err){
+      console.log('user not deleted',err);
+  }
+  },
+
+  UpdateUser:async (req,res)=>{
+    const id = req.params.iduser
+    const body={
+      firstname:req.body.firstname,
+      lastname:req.bodylastname,
+      email:req.body.email,
+      role:req.body.role,
+      phone:req.bodyphone,
+      adress:req.bodyadress,
+      pwd:req.body.pwd
+    }
+    try{
+      const results = user.updateuser(body,id)
+      res.status(201).json(results)
+
+}
+catch(err){
+    console.log('error in updating ',err);
+}
+  },
+
   addAccount: async (req, res) => {
     const { firstname, lastname, role, phone, adress, email, pwd } = req.body;
     const hashed = await bcrypt.hash(pwd, 10); 

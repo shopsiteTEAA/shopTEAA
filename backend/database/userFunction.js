@@ -13,9 +13,20 @@ const findUser = (email) => {
 const saveUser = (data) => {
   User.create(data)
 }
+const deleteuser=(id)=>{
+    return User.destroy({
+        where: { iduser:id }
+      })
+}
+const updateuser=(id,body)=>{
+    return User.update(body,{where:{iduser:id}})
+
+}
 
 module.exports={
     getalluser : getalluser,
     findUser : findUser,
-    saveUser : saveUser
+    saveUser : saveUser,
+    deleteuser : deleteuser,
+    updateuser : updateuser
 }
