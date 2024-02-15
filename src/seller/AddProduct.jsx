@@ -1,6 +1,7 @@
 import React from "react";
 import MinHeader from "../Ccomponents/MinHeader";
 import Navbar from "../Ccomponents/Navbar";
+import Fotter from "../Ccomponents/Fotter";
 
 const AddProduct = () => {
   return (
@@ -14,7 +15,7 @@ const AddProduct = () => {
           Welcome! <span className="text-red-500">MR Amine</span>
         </p>
       </div>
-      <div className="w-full h-64 ">
+      
         <div class="flex items-center justify-center p-12 text-center font-semibold ml-36 mt-3">
           <div class="mx-auto w-full max-w-[550px] bg-white ">
             <div class="">
@@ -22,7 +23,7 @@ const AddProduct = () => {
                 for="email"
                 class="mb-3 block text-base font-medium text-[#07074D]"
               >
-               <span className="text-red-500">Product</span> name
+                <span className="text-red-500">Product</span> name
               </label>
               <input
                 type="email"
@@ -32,26 +33,26 @@ const AddProduct = () => {
                 class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
               <div class="mb-5">
-              <label
-                for="text"
-                class="mb-3 block text-base font-medium text-[#07074D]"
-              >
-                <span className="text-red-500">Category</span> Product
-              </label>
-              <input
-                type="text"
-                name="text"
-                placeholder="Category"
-                class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-              />
-            </div>
+                <label
+                  for="text"
+                  class="mb-3 block text-base font-medium text-[#07074D]"
+                >
+                  <span className="text-red-500">Category</span> Product
+                </label>
+                <input
+                  type="text"
+                  name="text"
+                  placeholder="Category"
+                  class="w-full  rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                />
+              </div>
             </div>
             <div class="mb-5">
               <label
                 for="email"
                 class="mb-3 block text-base font-medium text-[#07074D]"
               >
-               <span className="text-red-500">Rate</span> Product
+                <span className="text-red-500">Rate</span> Product
               </label>
               <input
                 type="number"
@@ -77,7 +78,7 @@ const AddProduct = () => {
                 for="email"
                 class="mb-3 block text-base font-medium text-[#07074D]"
               >
-                 <span className="text-red-500">Current</span> Price
+                <span className="text-red-500">Current</span> Price
               </label>
               <input
                 type="email"
@@ -85,29 +86,27 @@ const AddProduct = () => {
                 class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
               <div class="mb-5">
-              <label
-                for="email"
-                class="mb-3 block text-base font-medium text-[#07074D]"
-              ><span className="text-red-500">Quantity</span> 
-              </label>
-              <input
-                type="number"
-                placeholder="Quantity"
-                class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-              />
+                <label
+                  for="email"
+                  class="mb-3 block text-base font-medium text-[#07074D]"
+                >
+                  <span className="text-red-500">Quantity</span>
+                </label>
+                <input
+                  type="number"
+                  placeholder="Quantity"
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                />
+              </div>
             </div>
-            </div>
-
-
-            
           </div>
           <div class="mx-auto w-full max-w-[550px] bg-white ">
-            
             <div class="mb-5">
               <label
                 for="email"
                 class="mb-3 block text-base font-medium text-[#07074D]"
-              ><span className="text-red-500">Description</span>
+              >
+                <span className="text-red-500">Description</span>
               </label>
               <input
                 type="text"
@@ -115,7 +114,6 @@ const AddProduct = () => {
                 class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
-            
 
             <div class="mb-6 pt-4">
               <label class="mb-5 block text-xl font-semibold text-[#07074D]">
@@ -150,7 +148,12 @@ const AddProduct = () => {
             </div>
           </div>
         </div>
+      
+      <div>
+         <Fotter/>
       </div>
+     
+      
     </div>
   );
 };

@@ -1,67 +1,132 @@
-const { where,Op } = require('sequelize')
-const {Product} = require ('./sequalise')
+const { Op } = require('sequelize');
+const { Product, ImgProduct, ColorProduct } = require('./sequalise');
 
+// insert product
+const insertProduct = async (data) => {
+  try {
+    const createdProduct = await Product.create(data);
+    return createdProduct;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
 
-// insert product 
-const insertproduct =(data)=>{
-    Product.create(data)
-}
+// update product
+const updateProduct = (dataNew, id) => {
+  return Product.update(dataNew, { where: { idproduct: id } });
+};
 
-// update product 
-const updateproduct =(datanew,id)=>{
-    return Product.update(datanew,{where:{idproduct:id}})
-}
+// delete product
+const deleteProduct =(id) => {
+  Product.destroy({ where :{idproduct :id }})
+};
 
-// delete product 
-const deleteproduct =(id)=>{
-    return Product.destroy({where:{idproduct : id}})
-}
+// get all product
+const getAllProduct = () => {
+  return Product.findAll({
+    attributes: [
+      'idproduct',
+      'name',
+      'category',
+      'rate',
+      'status',
+      'initalprice',
+      'currentprice',
+      'imgurlmain',
+      'quantity',
+      'description',
+    ],
+    include: [ImgProduct, ColorProduct],
+  })
+};
 
-// get all product 
-const getallproduct =()=>{
-    return Product.findAll()
-}
+// get specific product by id
+const getProductById = async (id) => {
+ try{
+  const data =  await Product.findAll({
+    where: { idproduct: id },
+    include: [ImgProduct, ColorProduct],
+  })
+  return data
+ }
+ catch(err){
+  console.log('err',err);
+ }
+};
 
-// get specific product by id 
+// get product available
+const getAllProductAvailable = () => {
+  return Product.findAll({ where: { status: 'available' } });
+};
 
-const getproductbyid=(id)=>{
-    return Product.findAll({where:{idproduct:id}})
-}
+// get product by category
+const getProductByCategory = (category) => {
+  return Product.findAll({ where: { category: category } });
+};
 
+// get product for promotion
+const getProductForPromo = () => {
+  return Product.findAll({ where: { status: "promo" } });
+};
 
-//get product available 
-const getallproductavailable =()=>{
-    return Product.findAll({where:{status : 'available'}})
-}
+// get top-rated product > 4
+const getTopRatedProduct = () => {
+  return Product.findAll({ where: { rate: { [Op.gt]: 4 } } });
+};
 
-// get product by category 
-const getproductbycatigory =(cate)=>{
-    return Product.findAll({where:{category:cate}})
-}
+// get product with images and colors
+const getProductWithImagesAndColors = (id) => {
+  return Product.findAll({
+    attributes: [
+      'idproduct',
+      'name',
+      'category',
+      'rate',
+      'status',
+      'initalprice',
+      'currentprice',
+      'imgurlmain',
+      'quantity',
+      'description',
+    ],
+    where: { idproduct: id },
+    include: [ImgProduct, ColorProduct],
+  });
+};
 
-// get product for promotion 
+// insert img product
+const insertImgProduct = (data, productId) => {
+  return ImgProduct.create({ image : data, productIdproduct: productId });
+};
 
-const getproductforpromo =()=>{
-    return Product.findAll({where:{status:"promo"}})
-}
+// insert color product
+const insertColorProduct = (data, productId) => {
+  return ColorProduct.create({ color : data, productIdproduct: productId });
+};
 
-// get topratedproduct > 4
-const gettopratedproduct =()=>{
-    return Product.findAll({where:{rate:{ [Op.gt] : 4} }})
-}
+// update img product
+const updateImgProduct = (data, productId) => {
+  return ImgProduct.update({image : data}, { where: { productIdproduct: productId } });
+};
 
+// update color product
+const updateColorProduct = (data, productId) => {
+  return ColorProduct.update({color : data}, { where: { productIdproduct: productId } });
+};
 
-module.exports={
-    gettopratedproduct:gettopratedproduct,
-    getproductforpromo:getproductforpromo,
-    getproductbycatigory:getproductbycatigory,
-    getallproductavailable:getallproductavailable,
-    getallproduct:getallproduct,
-    deleteproduct:deleteproduct,
-    updateproduct:updateproduct,
-    insertproduct:insertproduct,
-    getproductbyid:getproductbyid
-    
-
-}
-
+module.exports = {
+  getTopRatedProduct: getTopRatedProduct,
+  getProductForPromo: getProductForPromo,
+  getProductByCategory: getProductByCategory,
+  getAllProductAvailable: getAllProductAvailable,
+  getAllProduct: getAllProduct,
+  deleteProduct: deleteProduct,
+  updateProduct: updateProduct,
+  insertProduct: insertProduct,
+  getProductById: getProductById,
+  getProductWithImagesAndColors: getProductWithImagesAndColors,
+  insertImgProduct: insertImgProduct,
+  insertColorProduct: insertColorProduct,
+  updateImgProduct: updateImgProduct,
+  updateColorProduct: updateColorProduct,
+};
