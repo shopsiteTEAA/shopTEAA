@@ -1,11 +1,20 @@
 
+import { Route, Routes } from 'react-router';
 import './App.css';
+import Home from './pages/Home';
+import { BrowserRouter } from 'react-router-dom';
+import Wishlist from './pages/Wishlist';
 
 function App() {
+
+
   return (
-    <div className="App">
-        <h1>amine</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Home />} path="/" />
+        <Route element={<Wishlist />} path="/wishlist" />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
