@@ -125,5 +125,4 @@ module.exports={
             console.log('err in getting product',err);
         }
     }
-
-}
+} 
