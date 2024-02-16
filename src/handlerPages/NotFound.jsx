@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../Ccomponents/Navbar'
 import MinHeader from '../Ccomponents/MinHeader'
-
+import Fotter from '../Ccomponents/Fotter'
 const NotFound = () => {
   return (
     <div>
@@ -37,6 +37,7 @@ const NotFound = () => {
         </div>
     </div>
 </section>
+<Fotter />
       
     </div>
   )

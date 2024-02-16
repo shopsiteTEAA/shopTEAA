@@ -1,8 +1,7 @@
 import React from 'react'
-import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import Navbar from '../Ccomponents/Navbar';
-import MinHeader
- from '../Ccomponents/MinHeader';
+import MinHeader from "../Ccomponents/MinHeader"
+import Fotter from '../Ccomponents/Fotter';
 
 const Contact = () => {
   return (
@@ -157,6 +156,7 @@ const Contact = () => {
     </div>
 </section>
 </div>
+<Fotter />
         </div>
   )
 }

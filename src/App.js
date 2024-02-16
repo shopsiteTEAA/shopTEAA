@@ -4,7 +4,7 @@ import AboutUs from "./handlerPages/AboutUs.jsx";
 import Contact from "./handlerPages/Contact.jsx";
 import NotFound from './handlerPages/NotFound.jsx';
 import Cloudinary from './handlerPages/Cloudinary.jsx';
-
+import AddProduct from './seller/AddProduct.jsx';
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
           <Route path="/About" element={<AboutUs />} />
           <Route path="/NotFound" element={<NotFound />} />
           <Route path="/Cloudinary" element={<Cloudinary />} />
+          <Route path="/AddProduct" element={<AddProduct />} />
         </Routes>
       </Router>
     </div>
