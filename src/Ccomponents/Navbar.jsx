@@ -9,15 +9,20 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <div className="h-[38px] w-[1170px] flex justify-between items-center mx-auto mt-10">
-      <div className="h-[24px] w-[645px] flex justify-between items-center">
+    <div className="h-[38px] w-[1100px] flex justify-between items-center mx-auto mt-10">
+      <div className="h-[24px] w-[550px] flex justify-between items-center">
         <h1 className="font-bold    ">Exclusive</h1>
         <ul className="w-[367px] flex justify-between items-center  text-sm/[24px] font-semibold  ">
           <li>
-            <a href="Home">Home</a>
+            <Link to={'/saler'}><a>Home</a></Link>
           </li>
-          <Link to={'/seler/addProduct'}><li><a>Add Product</a></li></Link>
-          <li><a href="">See ALL Product</a></li>
+          <li>
+            <Link to={'/saler'}><span className="text-red-500">My Zone</span></Link>
+          </li>
+          
+          
+          <Link to={'/saler/addProduct'}><li><a className="text-red-500">Add Product</a></li></Link>
+          <Link to={'/saler/allProduct'}><li><a className="text-red-500">ALL Product</a></li></Link>
           <li><a href="">Log out</a></li>
         </ul>
       </div>

@@ -1,4 +1,4 @@
-const { Op } = require('sequelize');
+const { Op, where } = require('sequelize');
 const { Product, ImgProduct, ColorProduct } = require('./sequalise');
 
 // insert product
@@ -114,6 +114,30 @@ const updateColorProduct = (data, productId) => {
   return ColorProduct.update({color : data}, { where: { productIdproduct: productId } });
 };
 
+// get product to specific saler 
+const getallproductsaler = (id)=>{
+  return Product.findAll({where:{userIduser : id}})
+}
+
+// get the 10 new product inserted 
+const newProductsInStore = () =>{
+  return  Product.findAll({
+    order: [['createdAt', 'DESC']], // Order by creation time in descending order
+    limit: 10, 
+  });
+} 
+
+// get the 10 newest product inserted by a saler 
+
+const newProductsInStoreuser =(id) =>{
+  return  Product.findAll({
+    where: {userIduser : id },
+    order: [['createdAt', 'DESC']], // Order by creation time in descending order
+    limit: 10, 
+  });
+} 
+
+
 module.exports = {
   getTopRatedProduct: getTopRatedProduct,
   getProductForPromo: getProductForPromo,
@@ -129,4 +153,7 @@ module.exports = {
   insertColorProduct: insertColorProduct,
   updateImgProduct: updateImgProduct,
   updateColorProduct: updateColorProduct,
+  getallproductsaler : getallproductsaler ,
+  newProductsInStoreuser :newProductsInStoreuser,
+  newProductsInStore : newProductsInStore
 };

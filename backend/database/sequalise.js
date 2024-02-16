@@ -33,7 +33,7 @@ const Product = sequelize.define(
       type: DataTypes.INTEGER 
     }
   },
-  { freezeTableName: true, timestamps: false }
+  { freezeTableName: true, timestamps: true }
 );
 
 const ImgProduct = sequelize.define(
