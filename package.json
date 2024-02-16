@@ -33,7 +33,7 @@
     "sequelize": "^6.37.0",
     "universal-cookie": "^7.0.2",
     "web-vitals": "^2.1.4"
-  },
+  },  
   "scripts": {
     "start": "react-scripts start",
     "start_back": "nodemon backend/server.js"
