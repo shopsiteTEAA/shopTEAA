@@ -1,4 +1,5 @@
 import React from "react";
+
 import MinHeader from "../Ccomponents/MinHeader";
 import Navbar from "../Ccomponents/Navbar";
 import TablesProd from "./TablesProd";

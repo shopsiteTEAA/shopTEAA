@@ -4,7 +4,7 @@ const database = process.env.DATABASE;
 const username = process.env.USERNAME;
 const pwd = process.env.PWD;
 
-const sequelize = new Sequelize("teaa", "root", "21018965", {
+const sequelize = new Sequelize("teaa", "root1", "Centrale2020@", {
   host: "localhost",
   dialect: "mysql",
 });
@@ -177,14 +177,19 @@ Wishlist.belongsTo(Product , { foreignKey: 'productIdproduct' , onDelete: 'CASCA
 ReviewRate.belongsTo(User,{ foreignKey: 'userIduser', onDelete: 'CASCADE' });
 ReviewRate.belongsTo(Product,{ foreignKey: 'productIdproduct' , onDelete: 'CASCADE' });
 
+
 sequelize.sync({alter:true});
 
 module.exports = {
-  Product : Product,
+  Product :Product,
+  Wishlist :Wishlist,
+  Reviewrate :ReviewRate,
+  Panier :Panier,
   ImgProduct :ImgProduct,
   ColorProduct :ColorProduct,
-  User :User,
-  Panier:Panier,
-  ReviewRate :ReviewRate,
-  Wishlist :Wishlist,
-};
+  User :User
+
+
+}
+
+
