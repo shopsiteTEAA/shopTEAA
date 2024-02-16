@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState,useEffect} from 'react';
 import Navbar from '../../Ccomponents/Navbar.jsx';
 import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
@@ -46,13 +46,6 @@ const deletee=(id,Product)=>{
           Home / <span className='text-black'> Cart</span>
         </h1>
 
-        {/*<div className='grid grid-cols-4 mt-10 shadow items-center h-14 w-5/6 '>
-          <h1 className='ml-20'>Product</h1>
-          <h1 className='ml-20'>Price</h1>
-          <h1 className='ml-20'>Quantity</h1>
-          <h1 className='ml-10'>Subtotal</h1>
-  </div>*/}
-
 
         {data.map((item, i) => (
           <div key={i} className='grid grid-cols-4 mt-10 shadow items-center h-14 w-5/6 ' style={{'display':'flex','justifyContent':'space-around'}}>
@@ -95,22 +88,6 @@ const deletee=(id,Product)=>{
         <button className='shadow border-gray-300 border w-40 h-14 border rounded text-sm'></button>
             </div>
             </div>
-{/*<div>
-      <div className=" bg-rose-600 flex items-center col-span-2"> 
-      <button className='bg-black shadow border-gray-300 border w-40 h-14 border rounded text-sm'></button>
-          
-      <input className=' bg-emerald-800 shadow border-red-300 border w-0 h-14 border rounded text-sm'/>
-     
-
-      <input className="shadow border-gray-300 border ml-4 w-40 h-14 rounded text-sm" type="number" style={{ width: '72px', height: '44px', borderRadius: '4px', border: '1.5px solid', justifyContent: 'space-around' }}/>
- 
-     
-</div>
-            </div>*/}
-
-
-
-
 
 
         <div className='mt-20 '>
