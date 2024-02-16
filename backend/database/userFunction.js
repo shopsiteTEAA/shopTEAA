@@ -1,9 +1,6 @@
 const {User} = require ('../database/sequalise')
 
 
-
-
-
 const getalluser =()=>{
     return User.findAll()
 }

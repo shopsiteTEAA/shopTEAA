@@ -9,6 +9,7 @@ module.exports = {
   GetAllUser: async (req, res) => {
     try {
       const result = await user.getalluser();
+      console.log(result)
       res.status(200).json(result);
     } catch (err) {
       console.log(err);
@@ -27,26 +28,30 @@ module.exports = {
   }
   },
 
-  UpdateUser:async (req,res)=>{
-    const id = req.params.iduser
-    const body={
-      firstname:req.body.firstname,
-      lastname:req.bodylastname,
-      email:req.body.email,
-      role:req.body.role,
-      phone:req.bodyphone,
-      adress:req.bodyadress,
-      pwd:req.body.pwd
-    }
-    try{
-      const results = user.updateuser(body,id)
-      res.status(201).json(results)
+  UpdateUser: async (req, res) => {
+    const id = req.params.iduser;
+    const { firstname, lastname, email, role, phone, adress, pwd } = req.body;
 
-}
-catch(err){
-    console.log('error in updating ',err);
-}
-  },
+    try {
+        const hashedPwd = await bcrypt.hash(pwd, 10);
+
+        const body = {
+            firstname,
+            lastname,
+            email,
+            role,
+            phone,
+            adress,
+            pwd: hashedPwd 
+        };
+
+        const results = await user.updateuser(id, body);
+        res.status(201).json(results);
+    } catch (err) {
+        console.log('Error in updating:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+},
 
   addAccount: async (req, res) => {
     const { firstname, lastname, role, phone, adress, email, pwd } = req.body;
@@ -88,7 +93,7 @@ login : async (req, res) => {
             const isMatch =await bcrypt.compare(password, hashedPwd);
             if (isMatch) {
               const token = jwt.sign(
-                { email: validation.email, id: validation.id, firstname: validation.firstname },
+                { email: validation.email, id: validation.iduser, firstname: validation.firstname ,role:validation.role},
                 secretKey
               );
 

@@ -3,20 +3,32 @@ import axios from "axios";
 import Leftsidebar from "../Ccomponents/Leftsidebar";
 import Navbar from "../Ccomponents/Navbar";
 import MinHeader from "../Ccomponents/MinHeader";
+import { jwtDecode } from "jwt-decode"; 
+import Cookies from "universal-cookie";
+import { useCookies } from 'react-cookie';
+
 
 
 
 function UpdateUser() {
-    const [newfirstname, setNewFirstName] = useState("");
-    const [newlastname, setNewLastName] = useState("");
-    const [newemail, setNewEmail] = useState("");
-    const [newpassword, setNewPassword] = useState("");
-    const [newnumber, setNewNumber] = useState("");
-    const [newadress, setNewAdress] = useState("");
-    const [newrole, setNewRole] = useState("");
 
-    const updatee=(id)=>{
-        axios.put(`http://localhost:3000/user/update/updateuser/${id}`, {
+    const [newfirstname, setNewFirstName] = useState("")
+    const [newlastname, setNewLastName] = useState("")
+    const [newemail, setNewEmail] = useState("")
+    const [newpassword, setNewPassword] = useState("")
+    const [newnumber, setNewNumber] = useState("")
+    const [newadress, setNewAdress] = useState("")
+    const [newrole, setNewRole] = useState("")
+
+    const [cookies, setCookie, removeCookie] = useCookies(['token']);
+    const token = cookies.token;
+    const decodetoken=jwtDecode(token).id
+    
+   
+   
+
+    const updatee=()=>{
+        axios.put(`http://localhost:3000/user/updateuser/${decodetoken}`, {
         firstname :newfirstname, 
         lastname : newlastname,
         email :newemail,
@@ -32,20 +44,24 @@ function UpdateUser() {
        
   return (
     <div>
-        <MinHeader/>
-        <Navbar/>
-   <Leftsidebar/>
-<div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md" style={{marginBottom:150}}>
-      <h2 className="text-2xl font-bold mb-4">Update Profile</h2>
-      <form >
+    <div>
+      <MinHeader />
+      <Navbar />
+    </div>
+  
+    <div className="flex mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
+      <Leftsidebar />
+      <div className="flex flex-col items-center w-full max-w-lg">
+        <h2 className="text-2xl font-bold mb-4">Update Profile</h2>
         <div className="mb-4">
           <label htmlFor="firstName" className="block text-gray-700">First Name</label>
           <input
             type="text"
             id="firstName"
             name="firstName"
-            className="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
-            onChange={(e)=>{setNewFirstName(e.target.value)}}
+            className="mt-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+            onChange={(e) => { setNewFirstName(e.target.value) }}
+            style={{width:600}}
           />
         </div>
         <div className="mb-4">
@@ -54,9 +70,9 @@ function UpdateUser() {
             type="text"
             id="lastName"
             name="lastName"
-            className="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
-            onChange={(e)=>{setNewLastName(e.target.value)}}
-
+            className="mt-1 px-4 py-2  border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+            onChange={(e) => { setNewLastName(e.target.value) }}
+            style={{width:600}}
           />
         </div>
         <div className="mb-4">
@@ -65,9 +81,9 @@ function UpdateUser() {
             type="email"
             id="email"
             name="email"
-            className="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
-            onChange={(e)=>{setNewEmail(e.target.value)}}
-
+            className="mt-1 px-4 py-2  border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+            onChange={(e) => { setNewEmail(e.target.value) }}
+            style={{width:600}}
           />
         </div>
         <div className="mb-4">
@@ -76,9 +92,9 @@ function UpdateUser() {
             type="text"
             id="phone"
             name="phone"
-            className="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
-            onChange={(e)=>{setNewNumber(e.target.value)}}
-
+            className="mt-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+            onChange={(e) => { setNewNumber(e.target.value) }}
+            style={{width:600}}
           />
         </div>
         <div className="mb-4">
@@ -87,9 +103,9 @@ function UpdateUser() {
             type="text"
             id="address"
             name="address"
-            className="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
-            onChange={(e)=>{setNewAdress(e.target.value)}}
-
+            className="mt-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+            onChange={(e) => { setNewAdress(e.target.value) }}
+            style={{width:600}}
           />
         </div>
         <div className="mb-4">
@@ -98,21 +114,23 @@ function UpdateUser() {
             type="password"
             id="password"
             name="password"
-            className="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
-            onChange={(e)=>{setNewPassword(e.target.value)}}
-
+            className="mt-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+            onChange={(e) => { setNewPassword(e.target.value) }}
+            style={{width:600}}
           />
         </div>
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-500"
-          onClick={()=>{updatee(id)}}
+          className="bg-red-600 text-black px-4 py-2 rounded-md hover:bg-gray-200 focus:outline-none focus:ring focus:ring-blue-500"
+          onClick={() => { updatee() }}
         >
           Update Profile
         </button>
-      </form>
+      </div>
     </div>
-    </div>
+  </div>
+  
+
   )
 }
 

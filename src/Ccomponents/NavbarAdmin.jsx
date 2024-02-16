@@ -16,7 +16,7 @@ function Navbar() {
           <li>
             <a href="Home">Home</a>
           </li>
-          <Link to={'/seler/addProduct'}><li><a>Add Product</a></li></Link>
+          <Link to={'/seler/addProduct'}><li><a>Manage Accounts</a></li></Link>
           <li><a href="">See ALL Product</a></li>
           <li><a href="">Log out</a></li>
         </ul>

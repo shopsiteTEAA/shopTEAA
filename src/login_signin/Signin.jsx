@@ -15,8 +15,7 @@ function Signin() {
   const [role, setRole] = useState("");
 
   const handleCreate = (obj) => {
-    axios
-      .post("http://localhost:3000/user/signup", obj)
+    axios.post("http://localhost:3000/user/signup", obj)
       .then((res) => {
         console.log("created");
       })
@@ -53,7 +52,7 @@ function Signin() {
               <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Create and account
               </h1>
-              <form class="space-y-4 md:space-y-6" action="#">
+              <div class="space-y-4 md:space-y-6" action="#">
                 <div>
                   <label
                     for="email"
@@ -234,7 +233,7 @@ function Signin() {
                     Login here
                   </a>
                 </p>
-              </form>
+              </div>
             </div>
           </div>
         </div>

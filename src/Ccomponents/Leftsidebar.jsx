@@ -15,17 +15,16 @@ function Leftsidebar() {
 
   return (
     
-        <div className="flex">
-          {/* Sidebar container */}
-          <div className="bg-white text-black w-1/3 max-w-xs flex flex-col">
+        <div className="flex w-1/3" >
+          <div className="bg-white text-black w-1/1 max-w-xs flex flex-col">
             {/* Sidebar header */}
             <div className="flex items-center justify-center h-16 border-b border-gray-800">
             </div>
     
             {/* Sidebar items */}
-            <ul className="py-4">
+            <ul className="py-4 w-1/1">
               <li className="px-4 py-2 hover:bg-gray-300 cursor-pointer">
-                <a href="#" className="flex items-center">
+                <a href="#" className="flex items-center ">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                   </svg>
@@ -33,7 +32,7 @@ function Leftsidebar() {
                 </a>
               </li>
               <li className="px-4 py-2 hover:bg-gray-300 cursor-pointer" onClick={toggleManageAccountSubMenu}>
-                <a href="#" className="flex items-center">
+                <a href="#" className="flex items-center <">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                   </svg>
@@ -73,13 +72,11 @@ function Leftsidebar() {
             </ul>
           </div>
     
-          {/* Main content */}
-          <div className="flex-1">
-            {/* Your main content goes here */}
-          </div>
+          
         </div>
 
   )
 }
-
+{/* <div className="flex-1">
+          </div> */}
 export default Leftsidebar
