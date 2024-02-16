@@ -6,6 +6,7 @@ const Routermain = require('./router/routermain')
 const Routeruser = require('./router/routeruser')
 const RouterSaler = require('./router/routersaler')
 const RouterPanier = require('./router/routerPanier')
+const RouterAdmin = require('./router/routerAdmin')
 const app = express()
 app.use(express.json())
 app.use(cors())
@@ -16,6 +17,8 @@ app.use('/', Routermain)
 app.use('/user',Routeruser)
 app.use('/saler',RouterSaler)
 app.use("/panier",RouterPanier)
+app.use('/admin',RouterAdmin)
+
 app.listen(port,()=>{
     console.log('the server is lessting on ',port);
 })
