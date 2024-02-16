@@ -34,22 +34,10 @@ function GamepadDetails() {
           <div id="blue" className="h-6 w-6 border-2 border-black rounded-full bg-[#1da1f2]">
             <div className="h-full w-full bg-blue-200 rounded-full"></div>
           </div>
-          <div id="red" className="h-6 w-6 bg-red-500 border-2 border-black rounded-full bg-[#be123c]"></div>
+          <div id="red" className="h-6 w-6 bg-red-500 border-2 rounded-full bg-[#be123c]"></div>
         </div>
 
-        <div id="cuantity" className="flex justify-start items-center gap-16">
-          <div className="cuantity_counter flex items-center">
-            <button id="minest" className="flex w-10 h-9 font-poppins text-2xl font-light bg-red justify-center items-center flex-shrink-0 border-r text-white border-red border-opacity-50">-</button>
-            <input
-              style={{ color: "black" }}
-              type="number"
-              id="num"
-              step="1"
-              className="w-20 px-2 text-base border-t border-b border-red border-opacity-50 h-9"
-            />
-            <button id="plus" className="flex w-10 h-9 font-poppins text-2xl font-light bg-red justify-center items-center flex-shrink-0 text-white bg-red-500 border border-red border-opacity-50">+</button>
-          </div>
-        </div>
+    
 
         <div className="mt-7 text-sm leading-5 text-black">
           PlayStation 5 Controller Skin High-quality vinyl with air
@@ -92,8 +80,8 @@ function GamepadDetails() {
         
   <p className="text-center">{/*quantity*/}</p>
     </div>
-    <div class="w-[41px] h-11 flex justify-center items-center bg-red-500 rounded-tr rounded-br">
-      <button class=" text-white ">+</button>
+    <div className="w-[41px] h-11 flex justify-center items-center bg-red-500 rounded-tr rounded-br">
+      <button className=" text-white ">+</button>
    </div>
 
    <div className="w-[165px] h-11 ml-5 bg-red-500 rounded justify-center items-center gap-2.5 inline-flex">

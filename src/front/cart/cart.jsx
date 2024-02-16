@@ -35,7 +35,7 @@ const deletee=(id,Product)=>{
   
 
   const total=(quantity,price)=>{
-    return quantity * price;
+    return quantity * price
   };
 
   return (
@@ -49,8 +49,8 @@ const deletee=(id,Product)=>{
 
         {data.map((item, i) => (
           <div key={i} className='grid grid-cols-4 mt-10 shadow items-center h-14 w-5/6 ' style={{'display':'flex','justifyContent':'space-around'}}>
-            <img className='w-10 ml-10' src={item.CartImage} alt="" />
-            <h1 className='ml-10'>{item.Price}</h1>
+            <img className='w-10 ml-10' src={item.image} alt="" />
+            <h1 className='ml-10'>{item.initialprice}</h1>
             <input
               className='w-10 ml-10 border-gray-300 border rounded'
               type="number"
@@ -64,8 +64,8 @@ const deletee=(id,Product)=>{
                 });
               }}
             />
-            <h1 className='ml-20'>{total(item.quantity || 1, item.Price)} $</h1>
-            <MdDelete className='ml-10 cursor-pointer'  onClick={() => {deletee(item.CartID)}}/>
+            <h1 className='ml-20'>{total(item.quantity || 1, item.initialprice)} $</h1>
+            <MdDelete className='ml-10 cursor-pointer'  onClick={() => {deletee(item.id)}}/>
             
           </div>
           
@@ -97,11 +97,11 @@ const deletee=(id,Product)=>{
 
         <div className='float-right -mt-28 mr-56  shadow border-black border rounded w-80  text-start  '>
           <h1 className='ml-5 mt-2'>Cart Total</h1>
-          <h3 className='ml-5 mt-6'>Subtotal:{data.reduce((tota,e)=> tota +total(e.quantity||1,e.Price),0)}  $</h3>
+          <h3 className='ml-5 mt-6'>Subtotal:{data.reduce((tota,e)=> tota +total(e.quantity||1,e.initialprice),0)}  $</h3>
           <hr className="text-gray-300 w-5/6 text-center" />
           <h3 className='ml-5 mt-6'>Shipping:   <i>Free</i></h3>
           <hr className="text-gray-300 w-5/6" />
-          <h3 className='ml-5 mt-6'>Total:{data.reduce((tota,e)=> tota+total(e.quantity||1,e.Price),0)}  $</h3>
+          <h3 className='ml-5 mt-6'>Total:{data.reduce((tota,e)=> tota+total(e.quantity||1,e.initialprice),0)}  $</h3>
           <button
           onClick={()=>navigate('/paiment')} 
            className='shadow border-gray-300 border rounded-full ml-20 bg-red-600 text-white w-40 h-12 mt-4'>Proceed to checkout</button>
