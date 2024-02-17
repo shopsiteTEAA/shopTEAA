@@ -13,7 +13,7 @@ const {products,setProducts}=useContext(productcontext)
 
 
 useEffect(() => {
-  axios.get("http://localhost:3001/saler/getallprod").then((res) => {
+  axios.get("http://localhost:3000/saler/getallprod").then((res) => {
     setProducts(res.data);
 
     console.log(res.data);

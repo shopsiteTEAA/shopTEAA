@@ -18,7 +18,7 @@ function Bestproduct() {
   //   console.log(products, "dataaaaaa");
   useEffect(() => {
     axios
-      .get("http://localhost:3001/wishlist/getAllwishlist/1")
+      .get("http://localhost:3000/wishlist/getAllwishlist/1")
       .then((res) => {
         
         const sortedProducts = Object.values(

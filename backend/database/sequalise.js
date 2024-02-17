@@ -33,13 +33,28 @@ const Product = sequelize.define(
       type: DataTypes.INTEGER 
     }
   },
-  { freezeTableName: true, timestamps: false }
+  { freezeTableName: true, timestamps: true }
 );
 
 const ImgProduct = sequelize.define(
   "imgproduct",
   {
-    image: {
+    image1: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-8044861-6430770.png',
+    },
+    image2: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-8044861-6430770.png',
+    },
+    image3: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-8044861-6430770.png',
+    },
+    image4: {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: 'https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-8044861-6430770.png',
@@ -177,14 +192,17 @@ Wishlist.belongsTo(Product , { foreignKey: 'productIdproduct' , onDelete: 'CASCA
 ReviewRate.belongsTo(User,{ foreignKey: 'userIduser', onDelete: 'CASCADE' });
 ReviewRate.belongsTo(Product,{ foreignKey: 'productIdproduct' , onDelete: 'CASCADE' });
 
+
 sequelize.sync({alter:true});
 
 module.exports = {
-  Product : Product,
+  Product :Product,
+  Wishlist :Wishlist,
+  Reviewrate :ReviewRate,
+  Panier :Panier,
   ImgProduct :ImgProduct,
   ColorProduct :ColorProduct,
-  User :User,
-  Panier:Panier,
-  ReviewRate :ReviewRate,
-  Wishlist :Wishlist,
-};
+  User :User
+}
+
+

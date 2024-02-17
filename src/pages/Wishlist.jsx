@@ -24,7 +24,7 @@ const ProductCard = ({ data }) => {
   const { products, setProducts } = useContext(wishlistcontext);
   const addcart = () => {
     axios
-      .post(`http://localhost:3001/wishlist/toCart/1/${data.idproduct}`)
+      .post(`http://localhost:3000/wishlist/toCart/1/${data.idproduct}`)
       .then((res) => {
         console.log(res.data);
         const newProducts = products.filter(
@@ -189,7 +189,7 @@ const WishlistTop = ({ data }) => {
   const { products, setProducts } = useContext(wishlistcontext);
   useEffect(() => {
     axios
-      .get("http://localhost:3001/wishlist/getAllwishlist/1")
+      .get("http://localhost:3000/wishlist/getAllwishlist/1")
       .then((res) => {
         console.log(res.data);
         setProducts(res.data);
@@ -201,7 +201,7 @@ const WishlistTop = ({ data }) => {
 
   const addcart1 = () => {
     axios
-      .post(`http://localhost:3001/wishlist/allCart/1`)
+      .post(`http://localhost:3000/wishlist/allCart/1`)
       .then((res) => {
         console.log(res.data);
         setProducts([]);

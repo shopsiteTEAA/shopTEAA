@@ -12,7 +12,13 @@ module.exports={
           imgurlmain: req.body.imgurlmain,
           quantity: req.body.quantity,
           description: req.body.description,
-          userIduser : req.params.id
+          userIduser : req.params.id,
+          image :{
+                image1 : req.body.image1,
+                image2 : req.body.image2,
+                image3 : req.body.image3,
+                image4 : req.body.image4
+          }
         };
     
         try {
@@ -117,6 +123,37 @@ module.exports={
         catch(err){
             console.log('err in getting product',err);
         }
+    },
+    GetallProductSaler : async (req,res)=>{
+        const id = req.params.id
+        try{
+            const results = await prod.getallproductsaler(id)
+            res.status(200).send(results)
+
+        }
+        catch(err){
+            console.log(err);
+        }
+    },
+    NewProductsInStore : async(req,res)=>{
+       try{
+        const results = await prod.newProductsInStore()
+        res.status(200).send(results)
+       }
+       catch(err){
+        console.log('err',err);
+       }
+    },
+    NewProductsInStoreuser : async(req,res)=>{
+        try{
+            const id = req.params.id
+            const results = await prod.newProductsInStore(id)
+        res.status(200).send(results)
+        }
+        catch(err){
+            console.log(err);
+        }
     }
+
 
 }

@@ -11,7 +11,7 @@ const ProductCard = ({ data, best }) => {
 
 const addcart = () => {
   axios
-    .post(`http://localhost:3001/panier/addtoCart/1/${data.idproduct}`)
+    .post(`http://localhost:3000/panier/addtoCart/1/${data.idproduct}`)
     .then((res) => {
       console.log(res.data);
       if (localStorage.getItem("cart")) {

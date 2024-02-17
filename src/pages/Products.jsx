@@ -7,7 +7,7 @@ function Products() {
 
     const [products,setProducts] = useState([])
     useEffect(()=>{
-        axios.get("http://localhost:3001/saler/getallprod").
+        axios.get("http://localhost:3000/saler/getallprod").
         then(res => {
             setProducts(res.data);
             console.log("oo",res.data)

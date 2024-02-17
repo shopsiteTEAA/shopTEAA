@@ -11,7 +11,7 @@ const navigate= useNavigate()
  
  useEffect(() => {
    axios
-     .get("http://localhost:3001/saler/getallprod")
+     .get("http://localhost:3000/saler/getallprod")
      .then((res) => {
         console.log(res.data,"data");
        const sortedProducts = Object.values(

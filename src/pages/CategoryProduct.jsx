@@ -8,7 +8,7 @@ function CategoryProduct() {
     const { state: category } = useLocation()
     const [products, setProducts] = useState([])
     useEffect(() => {
-        axios.get("http://localhost:3001/saler/productcategory/" + category).
+        axios.get("http://localhost:3000/saler/productcategory/" + category).
             then(res => {
                 setProducts(res.data);
             }).catch(err => console.log(err))
