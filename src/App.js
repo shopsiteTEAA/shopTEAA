@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPageSaller from './seller/MainPageSaller.jsx';
 import AddProduct from './seller/AddProduct.jsx';
