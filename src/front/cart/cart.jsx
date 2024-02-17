@@ -34,6 +34,7 @@ const deletee=(product)=>{
       .catch((err)=>{console.log(err)})
   }
   
+  
 
   const total=(quantity,price)=>{
     console.log(quantity,price)

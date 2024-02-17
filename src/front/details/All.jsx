@@ -11,9 +11,9 @@ function Productdetails() {
     <div>
       <MinHeader />
       <Navbar />
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-10 ">
         <Details style={{ marginLeft: '30px' ,marginRight: '80px'}} />
-        <Description  />
+        <Description className="mt-20" />
       </div>
       <div className="flex">
         <RelatedItem />

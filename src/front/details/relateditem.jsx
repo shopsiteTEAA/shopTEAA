@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faHeart, faStar } from "@fortawesome/free-regular-svg-icons";
 
 const ProductCard = ({data}) => {
+
+
   return (
     <div className="h-[350px] transition-colors group w-[270px] bg-primary">
       <div className="top-box h-[250px] bg-[#f5f5f5] relative">
         <div className="add-to-cart-btn w-[270px] group-hover:h-[41px] transition-all duration-900 h-0 flex justify-center items-center absolute bottom-0 bg-[#000]">
-          <button className="text-primary w-[96px] m-auto p-3 text-center">
+          <button className="text-primary w-[96px] m-auto p-3 text-center" onClick={()=>{}}>
             Add to cart
           </button>
         </div>

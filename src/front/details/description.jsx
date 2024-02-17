@@ -15,7 +15,7 @@ function GamepadDetails() {
   }
   return (
     <div className="w-[600px] h-[450px]">
-      <div><i>Havic HV G-92 Gamepad</i></div>
+      <div><i><h1>Havic HV G-92 Gamepad</h1></i></div>
       <div>
         <button className="text-secondary">
           <FontAwesomeIcon icon={faStar} />
@@ -46,10 +46,12 @@ function GamepadDetails() {
 
     
 
-        <div className="mt-7 text-sm leading-5 text-black">
-          PlayStation 5 Controller Skin High-quality vinyl with air
+        <div className="mt-7 mr-9 text-sm leading-7  text-black ">
+         <p> 
+         PlayStation 5 Controller Skin High-quality vinyl with air
           channel adhesive for easy bubble-free install & mess-free
           removal Pressure-sensitive.
+        </p>
         </div>
 
         <div className="flex gap-5 justify-between mt-6 whitespace-nowrap">
