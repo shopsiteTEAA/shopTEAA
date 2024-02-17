@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Ccomponents/Navbar";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 function CheckAllusers() {
+  const navigate =useNavigate()
   const [cookies, setCookies, removeCookie] = useCookies(["token"]);
   const tokn = cookies.token;
 
@@ -23,7 +25,20 @@ function CheckAllusers() {
       });
   }, []);
 
+  const deleteUser=(iduser)=>{
+    axios.delete(`http://localhost:3000/user/deleteuser/${iduser}`)
+    .then(()=>{
+      console.log('user deleted')
+      window.location.reload()
+    }).catch((err)=>{console.log(err)})
+  }
+
   console.log(users);
+
+  const updateTheUser=(iduser)=>{
+    navigate(`/UpdateList/${iduser}`)
+  }
+
   return (
     <div>
       <Navbar />
@@ -156,7 +171,7 @@ function CheckAllusers() {
                       alt="Jese image"
                     />
                     <div className="ps-3">
-                      <div className="text-base font-semibold">
+                      <div key={ele.iduser} className="text-base font-semibold">
                         {ele.firstname} {ele.lastname}
                       </div>
                       <div className="font-normal text-gray-500">
@@ -179,6 +194,9 @@ function CheckAllusers() {
                       data-modal-target="editUserModal"
                       data-modal-show="editUserModal"
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      onClick={()=>{
+                        updateTheUser(ele.iduser)
+                      }}
                     >
                       Edit user
                     </a>
@@ -189,6 +207,7 @@ function CheckAllusers() {
                       data-modal-target="deleteUserModal"
                       data-modal-show="deleteUserModal"
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      onClick={()=>{deleteUser(ele.iduser)}}
                     >
                       Delete user
                     </a>

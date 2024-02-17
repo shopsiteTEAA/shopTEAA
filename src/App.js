@@ -9,6 +9,7 @@ import Signin from './login_signin/Signin.jsx';
 import UpdateUser from './login_signin/UpdateUser.jsx';
 import Leftsidebar from './Ccomponents/Leftsidebar';
 import CheckAllusers from './login_signin/CheckAllusers.jsx';
+import UpdateList from './login_signin/UpdateList.jsx';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/Signin" element={<Signin/>}/>
         <Route path="/UpdateUser" element={<UpdateUser/>}/>
         <Route path="/CheckAllusers" element={<CheckAllusers/>}/>
+        <Route path="/UpdateList/:iduser" element={<UpdateList/>}/>
 
 
 

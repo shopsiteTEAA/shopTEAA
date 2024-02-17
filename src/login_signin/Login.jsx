@@ -26,15 +26,15 @@ function Login() {
         cookies.set('token', res.data.token);
         if (decoded.role === "Seller") {
           navigate('/seller');
-          notifySuccess(); // Notify success
+          notifySuccess();
         }
       })
       .catch((error) => {
         console.log(error);
-        notifyError(); // Notify error
+        notifyError()
       });
   };
-
+ 
   return (
     <div>
       <MinHeader />
