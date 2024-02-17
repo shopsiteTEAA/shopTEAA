@@ -3,50 +3,83 @@ import MinHeader from "../Ccomponents/MinHeader";
 import Navbar from "../Ccomponents/Navbar";
 import Fotter from "../Ccomponents/Fotter";
 import axios from "axios";
-import Cloudinary from "../handlerPages/Cloudinary";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
+  const navigate = useNavigate()
   const [name, setName] = useState("");
   const [Category, setCategory] = useState("");
   const [rate, setRate] = useState("");
   const [intialPrice, setIntialPrice] = useState("");
   const [currentPrice, setCurrentPrice] = useState("");
-  const [quantity, setQuantity]= useState("");
+  const [quantity, setQuantity] = useState("");
   const [description, setDiscription] = useState("");
-  const [imageUrls, setImageUrls] = useState([]); 
+  const [photo, setPhoto] = useState([]);
 
-
-
-  const newProduct = {
-    name: name,
-    category: Category,
-    rate: rate,
-    status: "available",
-    initalprice: intialPrice,
-    currentprice: currentPrice,
-    // image and the color need to be handled 
-    imgurlmain: imageUrls ,
-    color: "blue",
-    image: "img5",
-    quantity: quantity,
-    description: description,
+  const handleImageChange = (e) => {
+    const selectedImages = Array.from(e.target.files);
+    console.log(selectedImages);
+    setPhoto(selectedImages);
   };
-  const insertProduct =(newProduct)=>{
-    // need now to get the id from cookies 
-    axios.post(`http://localhost:3000/saler/createprod/1`,newProduct)
-    .then(()=>{
-      console.log('data inserted !'); 
-    })
-    .catch((err)=>{
-      console.log('err in insert data from the frontend',err);
-    })
-  }
+
+  const uploadImage = async (image) => {
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("upload_preset", "AmineTessiku");
+
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/du0wpkjrs/upload",
+        formData
+      );
+      return response.data.secure_url;
+    } catch (error) {
+      console.error("Error uploading image to Cloudinary:", error);
+    }
+  };
+
+  const notifySuccess = () => toast.success("Product added successfully!");
+
+  const insertProduct = async () => {
+    try {
+      const mainImageUrl = await uploadImage(photo[0]);
+      const additionalImageUrls = await Promise.all(photo.slice(1).map(uploadImage));
+  
+      const newProduct = {
+        name: name,
+        category: Category,
+        rate: rate,
+        status: "available",
+        initalprice: intialPrice,
+        currentprice: currentPrice,
+        imgurlmain: mainImageUrl,
+        color: "blue",
+        quantity: quantity,
+        description: description,
+        image :{
+        image1: additionalImageUrls[0] || "",
+        image2: additionalImageUrls[1] || "",
+        image3: additionalImageUrls[2] || "",
+        image4: additionalImageUrls[3] || "",
+        }
+      };
+  
+      await axios.post("http://localhost:3000/saler/createprod/1", newProduct);
+      console.log(newProduct);
+      notifySuccess();
+      // navigate('/saler')
+    } catch (err) {
+      console.log('Error in insert data from the frontend', err);
+    }
+  };
   // now i need to get the cloudinary
   return (
     <div>
       <div>
         <MinHeader />
         <Navbar />
+        <ToastContainer/>
       </div>
       <div className="w-full h-full  font-semibold ml-36 mt-8 ">
         <p>
@@ -178,14 +211,18 @@ const AddProduct = () => {
             </label>
 
             <div class="mb-8">
-              <input type="file" name="file" id="file" class="sr-only" />
+              <input type="file" name="file" id="file" class="sr-only" multiple  onChange={
+                // need to make it not files not file[0] (for one image input ! )
+                    // setPhoto(ele.target.files[0])
+                    handleImageChange
+              }/>
               <label
                 for="file"
                 class="relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-12 text-center"
               >
                 <div>
-                <Cloudinary setImageUrls={setImageUrls} />
                   <span class="mb-2 block text-xl font-semibold text-[#07074D]">
+                    Drop files here
                   </span>
                   <span class="mb-2 block text-base font-medium text-[#6B7280]">
                     Or
@@ -199,16 +236,14 @@ const AddProduct = () => {
 
             <div>
               <button onClick={()=>{
-                insertProduct(newProduct)
+                insertProduct()
               }} class="hover:shadow-div w-full rounded-md bg-rose-600 py-3 px-8 text-center text-base font-semibold text-white outline-none">
                 Add The New Product
-              
               </button>
             </div>
           </div>
         </div>
       </div>
-
       <div>
         <Fotter />
       </div>

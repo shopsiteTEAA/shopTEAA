@@ -24,9 +24,6 @@ function UpdateUser() {
     const token = cookies.token;
     const decodetoken=jwtDecode(token).id
     
-   
-   
-
     const updatee=()=>{
         axios.put(`http://localhost:3000/user/updateuser/${decodetoken}`, {
         firstname :newfirstname, 

@@ -96,7 +96,12 @@ const getProductWithImagesAndColors = (id) => {
 
 // insert img product
 const insertImgProduct = (data, productId) => {
-  return ImgProduct.create({ image : data, productIdproduct: productId });
+  return ImgProduct.create({ 
+    image1 : data.image1 ,
+    image2 : data.image2 ,
+    image3 : data.image3 ,
+    image4 : data.image4 
+    , productIdproduct: productId });
 };
 
 // insert color product
