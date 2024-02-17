@@ -4,13 +4,13 @@ import MainPageSaller from './seller/MainPageSaller.jsx';
 import AddProduct from './seller/AddProduct.jsx';
 import Productsaler from './seller/Productsaler.jsx';
 import UpdateProduct from './seller/UpdateProduct.jsx';
-import Login from './login_signin/Login.jsx';
-import Signin from './login_signin/Signin.jsx';
-import UpdateUser from './login_signin/UpdateUser.jsx';
+import Login from './login_signin_adminpart/Login.jsx';
+import Signin from './login_signin_adminpart/Signin.jsx';
+import UpdateUser from './login_signin_adminpart/UpdateUser.jsx';
 import Leftsidebar from './Ccomponents/Leftsidebar';
-import CheckAllusers from './login_signin/CheckAllusers.jsx';
-import UpdateList from './login_signin/UpdateList.jsx';
-import ProfileAdmin from './login_signin/ProfileAdmin.jsx';
+import CheckAllusers from './login_signin_adminpart/CheckAllusers.jsx';
+import UpdateList from './login_signin_adminpart/UpdateList.jsx';
+import ProfileAdmin from './login_signin_adminpart/ProfileAdmin.jsx';
 
 
 function App() {
