@@ -1,20 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MinHeader from "../Ccomponents/MinHeader";
 import Navbar from "../Ccomponents/Navbar";
 import Fotter from "../Ccomponents/Fotter";
 import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
 import Cloudinary from "../handlerPages/Cloudinary";
 
-const AddProduct = () => {
-  const [name, setName] = useState("");
-  const [Category, setCategory] = useState("");
-  const [rate, setRate] = useState("");
-  const [intialPrice, setIntialPrice] = useState("");
-  const [currentPrice, setCurrentPrice] = useState("");
-  const [quantity, setQuantity]= useState("");
-  const [description, setDiscription] = useState("");
-  const [imageUrls, setImageUrls] = useState([]); 
+const UpdateProduct = () => {
+  const { idprod } = useParams();
+  const [data, setData] = useState([]);
+  const navigate = useNavigate()
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/saler/getproduct/${idprod}`)
+      .then((results) => {
+        setData(results.data[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  console.log('product ',data[0]);
 
+  const [name, setName] = useState(data.name);
+  const [Category, setCategory] = useState(data.category);
+  const [rate, setRate] = useState(data.rate);
+  const [intialPrice, setIntialPrice] = useState(data.initalprice);
+  const [currentPrice, setCurrentPrice] = useState(data.currentPrice);
+  const [quantity, setQuantity] = useState(data.quantity);
+  const [description, setDiscription] = useState(data.description);
+  const [photo, setPhoto] = useState(data.imgurlmain);
+  const [imageUrls, setImageUrls] = useState([]);
 
 
   const newProduct = {
@@ -24,23 +40,24 @@ const AddProduct = () => {
     status: "available",
     initalprice: intialPrice,
     currentprice: currentPrice,
-    // image and the color need to be handled 
-    imgurlmain: imageUrls ,
+    // image and the color need to be handled
+    imgurlmain: imageUrls,
     color: "blue",
     image: "img5",
     quantity: quantity,
     description: description,
   };
-  const insertProduct =(newProduct)=>{
-    // need now to get the id from cookies 
-    axios.post(`http://localhost:3000/saler/createprod/1`,newProduct)
-    .then(()=>{
-      console.log('data inserted !'); 
-    })
-    .catch((err)=>{
-      console.log('err in insert data from the frontend',err);
-    })
-  }
+  const updateprodnew= (newProduct) => {
+    axios
+      .put(`http://localhost:3000/saler/update/${idprod}`, newProduct)
+      .then(() => {
+        console.log("data inserted !");
+        navigate('/saler/allProduct')
+      })
+      .catch((err) => {
+        console.log("err in insert data from the frontend", err);
+      });
+  };
   // now i need to get the cloudinary
   return (
     <div>
@@ -64,13 +81,12 @@ const AddProduct = () => {
               <span className="text-red-500">Product</span> name
             </label>
             <input
-              onChange={(ele)=>{
-                setName(ele.target.value)
+              onChange={(ele) => {
+                setName(ele.target.value);
               }}
-              
               name="email"
               id="email"
-              placeholder="name product"
+              placeholder={data.name}
               class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             />
             <div class="mb-5">
@@ -81,12 +97,12 @@ const AddProduct = () => {
                 <span className="text-red-500">Category</span> Product
               </label>
               <input
-               onChange={(ele)=>{
-                setCategory(ele.target.value)
-              }}
+                onChange={(ele) => {
+                  setCategory(ele.target.value);
+                }}
                 type="text"
                 name="text"
-                placeholder="Category"
+                placeholder={data.category}
                 class="w-full  rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
@@ -99,11 +115,11 @@ const AddProduct = () => {
               <span className="text-red-500">Rate</span> Product
             </label>
             <input
-             onChange={(ele)=>{
-              setRate(ele.target.value)
-            }}
+              onChange={(ele) => {
+                setRate(ele.target.value);
+              }}
               type="number"
-              placeholder="rate"
+              placeholder={data.rate}
               class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             />
           </div>
@@ -115,10 +131,10 @@ const AddProduct = () => {
               <span className="text-red-500">Inital</span> Price
             </label>
             <input
-               onChange={(ele)=>{
-                setIntialPrice(ele.target.value)
+              onChange={(ele) => {
+                setIntialPrice(ele.target.value);
               }}
-              placeholder="Initial Price"
+              placeholder={data.initalprice}
               class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             />
           </div>
@@ -130,10 +146,10 @@ const AddProduct = () => {
               <span className="text-red-500">Current</span> Price
             </label>
             <input
-               onChange={(ele)=>{
-                setCurrentPrice(ele.target.value)
+              onChange={(ele) => {
+                setCurrentPrice(ele.target.value);
               }}
-              placeholder="Initial Price"
+              placeholder={data.currentPrice}
               class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             />
             <div class="mb-5">
@@ -144,11 +160,11 @@ const AddProduct = () => {
                 <span className="text-red-500">Quantity</span>
               </label>
               <input
-                 onChange={(ele)=>{
-                  setQuantity(ele.target.value)
+                onChange={(ele) => {
+                  setQuantity(ele.target.value);
                 }}
                 type="number"
-                placeholder="Quantity"
+                placeholder={data.quantity}
                 class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
@@ -163,16 +179,17 @@ const AddProduct = () => {
               <span className="text-red-500">Description</span>
             </label>
             <input
-               onChange={(ele)=>{
-                setDiscription(ele.target.value)
+              onChange={(ele) => {
+                setDiscription(ele.target.value);
               }}
               type="text"
-              placeholder="Description"
+              placeholder={data.description}
               class="w-full h-40  text-center rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             />
           </div>
 
           <div class="mb-6 pt-4">
+
             <label class="mb-5 block text-xl font-semibold text-[#07074D]">
               Upload File
             </label>
@@ -185,7 +202,9 @@ const AddProduct = () => {
               >
                 <div>
                 <Cloudinary setImageUrls={setImageUrls} />
+
                   <span class="mb-2 block text-xl font-semibold text-[#07074D]">
+                    
                   </span>
                   <span class="mb-2 block text-base font-medium text-[#6B7280]">
                     Or
@@ -198,11 +217,13 @@ const AddProduct = () => {
             </div>
 
             <div>
-              <button onClick={()=>{
-                insertProduct(newProduct)
-              }} class="hover:shadow-div w-full rounded-md bg-rose-600 py-3 px-8 text-center text-base font-semibold text-white outline-none">
-                Add The New Product
-              
+              <button
+                onClick={() => {
+                  updateprodnew(newProduct);
+                }}
+                class="hover:shadow-div w-full rounded-md bg-rose-600 py-3 px-8 text-center text-base font-semibold text-white outline-none"
+              >
+                Add The Updated Product
               </button>
             </div>
           </div>
@@ -216,4 +237,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default UpdateProduct;

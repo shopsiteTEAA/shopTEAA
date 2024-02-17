@@ -1,9 +1,11 @@
 import React from "react";
-import aboutUsImg from "./assests/download.jpg";
+import aboutUsImg from "./assests/istockphoto-496280806-612x612.jpg"
 import Navbar from "../Ccomponents/Navbar.jsx";
 import MinHeader from "../Ccomponents/MinHeader.jsx";
 import Fotter from "../Ccomponents/Fotter.jsx";
-import imageHam from "./assests/HTP (363).jpg";
+import image1 from "./assests/capp1.png"
+import image2 from "./assests/Capp 2.png"
+import image3 from "./assests/Capp 3.png"
 
 const AboutUs = () => {
   return (
@@ -35,11 +37,11 @@ const AboutUs = () => {
       <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6">
 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
-        <img class="rounded-t-lg" src={imageHam} alt="" />
+        <img class="rounded-t-lg" src={image1} alt="" />
     </a>
     <div class="p-5">
         <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Mohamed</h5>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Amin</h5>
         </a>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
         <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -54,12 +56,12 @@ const AboutUs = () => {
 <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6">
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
-            <img class="rounded-t-lg" src={imageHam} alt="" />
+            <img class="rounded-t-lg" src={image2} alt="" />
           </a>
           <div class="p-5">
             <a href="#">
               <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Achref
+                Eya
               </h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
@@ -93,12 +95,12 @@ const AboutUs = () => {
         <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6">
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
-            <img class="rounded-t-lg" src={imageHam} alt="" />
+            <img class="rounded-t-lg" src={image3} alt="" />
           </a>
           <div class="p-5">
             <a href="#">
               <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Eya
+                Achref
               </h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
