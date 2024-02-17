@@ -11,8 +11,15 @@ import CheckAllusers from './login_signin/CheckAllusers.jsx';
 import Contact from './handlerPages/Contact.jsx'
 import NotFound from './handlerPages/NotFound.jsx'
 import AboutUs from './handlerPages/AboutUs.jsx'
+import Home from './pages/Home.jsx';
+import Wishlist from './pages/Wishlist.jsx';
+import Products from './pages/Products.jsx';
+import Bestproduct from './pages/Bestproduct';
+import CategoryProduct from './pages/CategoryProduct.jsx';
 
 function App() {
+
+
   return (
     <BrowserRouter>
       <Routes>
@@ -20,7 +27,7 @@ function App() {
         <Route path="/saler/addProduct" element={<AddProduct />} />
         <Route path="/saler/allProduct" element={<Productsaler />} />
         <Route path="/saler/updateprod/:idprod" element={<UpdateProduct />} />
-        <Route path="/" element={<Login />} />
+        {/* <Route path="/" element={<Login />} /> */}
         <Route path="/Signin" element={<Signin />} />
         <Route path="/UpdateUser" element={<UpdateUser />} />
         <Route path="/CheckAllusers" element={<CheckAllusers />} />
@@ -29,6 +36,11 @@ function App() {
         <Route path="/NotFound" element={<NotFound />} />
         {/* <Route path="/Cloudinary" element={<Cloudinary />} /> */}
         <Route path="/AddProduct" element={<AddProduct />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/bestproduct"  element={<Bestproduct />} />
+        <Route path="/categoryProduct" element={<CategoryProduct />} />
       </Routes>
     </BrowserRouter>
   );

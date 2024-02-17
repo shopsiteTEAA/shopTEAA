@@ -3,14 +3,14 @@ const { Panier } = require("../database/sequalise.js");
 
   //get all product from panier
   const getallpanier =(id)=>{
-  return Panier.findAll({ where: {user_iduser:id} })
+  return Panier.findAll({ where: { userIduser: id } });
    }
    
   //to delete one product from panier
 
    const deletefrompanier =(id,oneProduct)=>{
       return Panier.destroy({
-        where: { user_iduser:id, product_idproduct: oneProduct }
+        where: { userIduser: id, productIdproduct: oneProduct },
       });
   }
 
