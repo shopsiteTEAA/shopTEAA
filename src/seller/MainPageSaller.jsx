@@ -77,10 +77,6 @@ const MainPageSaller = () => {
               </div>
             </div>
           </div>
-
-          {/* <div className="ml-10">
-            <LeftSideBar />
-          </div> */}
         </div>
         <div className="w-full  ">
           <div className="flex w-full">
@@ -124,7 +120,7 @@ const MainPageSaller = () => {
                                   <div className="flex-shrink-0 h-10 w-10">
                                     <img
                                       className="h-10 w-10 rounded-full"
-                                      src={data.imageurlmain}
+                                      src={data.imgurlmain}
                                       alt=""
                                     />
                                   </div>

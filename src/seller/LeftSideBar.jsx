@@ -6,7 +6,7 @@ function Leftsidebar() {
     const [isMyOrdersSubMenuOpen, setIsMyOrdersSubMenuOpen] = useState(false);
     const toggleManageAccountSubMenu = () => {
       setIsManageAccountSubMenuOpen(!isManageAccountSubMenuOpen);
-    };
+      };
     const toggleMyOrdersSubMenu = () => {
       setIsMyOrdersSubMenuOpen(!isMyOrdersSubMenuOpen);
     };
