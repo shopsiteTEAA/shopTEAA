@@ -8,6 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 import MinHeader from "../Ccomponents/MinHeader";
 import NavbarUser from "../Ccomponents/NavbarUser";
 import loginImage from "../images/image.png";
+import { Link } from "react-router-dom";
+
+
 
 function Login() {
   const cookies = new Cookies();

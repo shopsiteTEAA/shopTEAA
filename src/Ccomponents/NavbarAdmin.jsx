@@ -6,8 +6,17 @@ import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import Cookies from "universal-cookie";
 
-function Navbar() {
+
+function NavbarAdmin() {
+
+    const cookies=new Cookies('token')
+    const logout = () => {
+      cookies.remove('token')
+      window.location.href = '/Login'
+    };
+    
   return (
     <div className="h-[38px] w-[1170px] flex justify-between items-center mx-auto mt-10">
       <div className="h-[24px] w-[645px] flex justify-between items-center">
@@ -16,9 +25,9 @@ function Navbar() {
           <li>
             <a href="Home">Home</a>
           </li>
-          <Link to={'/seler/addProduct'}><li><a>Manage Accounts</a></li></Link>
+          <Link to={'/CheckAllusers'}><li><a>Manage Accounts</a></li></Link>
           <li><a href="">See ALL Product</a></li>
-          <li><a href="">Log out</a></li>
+          <li><a onClick={()=>{logout()}} href="">Log out</a></li>
         </ul>
       </div>
       <div className="flex justify-between items-center w-[395px]">
@@ -44,4 +53,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavbarAdmin;

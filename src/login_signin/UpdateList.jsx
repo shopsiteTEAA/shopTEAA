@@ -6,6 +6,10 @@ import axios from 'axios';
 import { jwtDecode } from "jwt-decode"; 
 import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router-dom';
+import { Link } from "react-router-dom";
+
+
+
 
 function UpdateList() {
     const [newfirstname, setNewFirstName] = useState("");

@@ -10,6 +10,7 @@ import UpdateUser from './login_signin/UpdateUser.jsx';
 import Leftsidebar from './Ccomponents/Leftsidebar';
 import CheckAllusers from './login_signin/CheckAllusers.jsx';
 import UpdateList from './login_signin/UpdateList.jsx';
+import ProfileAdmin from './login_signin/ProfileAdmin.jsx';
 
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
         <Route path="/UpdateUser" element={<UpdateUser/>}/>
         <Route path="/CheckAllusers" element={<CheckAllusers/>}/>
         <Route path="/UpdateList/:iduser" element={<UpdateList/>}/>
+        <Route path="/profileAdmin" element={<ProfileAdmin/>}/>
+
 
 
 
