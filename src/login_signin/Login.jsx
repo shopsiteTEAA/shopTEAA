@@ -25,7 +25,7 @@ function Login() {
         const decoded = jwtDecode(res.data.token);
         cookies.set('token', res.data.token);
         if (decoded.role === "Seller") {
-          navigate('/seller');
+          navigate('/saler');
           notifySuccess(); // Notify success
         }
       })
@@ -41,7 +41,7 @@ function Login() {
       <NavbarUser />
       <ToastContainer />
 
-      <section className="bg-gray-50 dark:bg-gray-900">
+      <section className="bg-white ">
         <img
           src={loginImage}
           alt="logo"
@@ -54,18 +54,18 @@ function Login() {
         >
           <a
             href="#"
-            className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+            className="flex items-center mb-6 text-2xl font-semibold dark:text-white"
           ></a>
           <div className="w-full  bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+              <h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl dark:text-white">
                 Connect to your account
               </h1>
               <div className="space-y-4 md:space-y-6" action="#">
                 <div>
                   <label
                     htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm font-medium  dark:text-white"
                   >
                     E-mail
                   </label>

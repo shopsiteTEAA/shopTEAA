@@ -7,7 +7,6 @@ import UpdateProduct from './seller/UpdateProduct.jsx';
 import Login from './login_signin/Login.jsx';
 import Signin from './login_signin/Signin.jsx';
 import UpdateUser from './login_signin/UpdateUser.jsx';
-import Leftsidebar from './Ccomponents/Leftsidebar';
 import CheckAllusers from './login_signin/CheckAllusers.jsx';
 
 

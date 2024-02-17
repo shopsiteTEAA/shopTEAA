@@ -3,8 +3,11 @@ import MinHeader from "../Ccomponents/MinHeader";
 import Navbar from "../Ccomponents/Navbar";
 import Fotter from "../Ccomponents/Fotter";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
+  const navigate = useNavigate()
   const [name, setName] = useState("");
   const [Category, setCategory] = useState("");
   const [rate, setRate] = useState("");
@@ -28,11 +31,15 @@ const AddProduct = () => {
     quantity: quantity,
     description: description,
   };
+  const notifySuccess = () => toast.success("Product add successfuly !");
   const insertProduct =(newProduct)=>{
     // need now to get the id from cookies 
     axios.post(`http://localhost:3000/saler/createprod/1`,newProduct)
     .then(()=>{
-      console.log('data inserted !');
+      notifySuccess()      
+    })
+    .then(()=>{
+      navigate('/saler')
     })
     .catch((err)=>{
       console.log('err in insert data from the frontend',err);
@@ -44,6 +51,7 @@ const AddProduct = () => {
       <div>
         <MinHeader />
         <Navbar />
+        <ToastContainer/>
       </div>
       <div className="w-full h-full  font-semibold ml-36 mt-8 ">
         <p>
