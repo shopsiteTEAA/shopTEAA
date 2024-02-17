@@ -4,42 +4,37 @@ import { productcontext } from "../../pages/Home";
 import { useNavigate } from "react-router-dom";
 
 function OurProduct({ data }) {
-  const navigate= useNavigate()
-  const { products } = useContext(productcontext)
+  const navigate = useNavigate();
+  const { products } = useContext(productcontext);
+
   return (
-    <div className="h-[493px] relative top-[900px]">
-      <div className="top-section flex h-[103px] w-[1170px] justify-between">
-        <div className="left flex flex-col justify-between h-[103px] w-[600px]">
-          <div className="section-name w-[200px] flex items-center">
-            <div className="rounded border-1 h-[40px] w-[20px] bg-secondary"></div>
-            <h2 className="px-4 font-semibold text-secondary">{data.name}</h2>
+    <div className="relative top-[900px] h-[493px]">
+      <div className="flex justify-between w-[1170px] h-[103px] top-section">
+        <div className="flex flex-col justify-between w-[600px] h-[103px] left">
+          <div className="flex items-center w-[200px] section-name">
+            <div className="rounded h-[40px] w-[20px] border-1 bg-secondary bg-red-600"></div>
+            <h2 className="px-4 font-semibold text-secondary text-red-600">{data.name}</h2>
           </div>
           <div className="h-[50px]">
-            <h1 style={{ fontSize: "28px", fontWeight: "600" }}>
-              {data?.title}
-            </h1>
+            <h1 className="text-2xl font-semibold ">{data?.title}</h1>
           </div>
         </div>
-        <div className="right h-[103px] w-[570px] relative ">
+        <div className="relative w-[570px] h-[103px] right">
           {data.viewProduct && (
-            <button
-              className="w-[159px] h-[46px] bg-#db4444 absolute top-[50%] right-0 translate-y-[-50%] text-center
-                     text-primary"
-            >
+            <button className="absolute top-[50%] right-0 transform -translate-y-1/2 w-[159px] h-[46px] bg-red-500 text-center text-white">
               View all
             </button>
           )}
         </div>
       </div>
-      <div className="products-list mt-10 grid-rows-1 gap-x-8 grid-flow-col grid">
+      <div className="grid grid-flow-col gap-x-8 grid-rows-1 mt-10 products-list">
         {products.map((e, i) => (
           <ProductCard data={e} key={i} />
         ))}
       </div>
       <button
         onClick={() => navigate("/products")}
-        className="w-[234px] h-[56px] bg-secondary text-center
-         text-primary m-auto relative  left-[50%] translate-x-[-50%]"
+        className="left-[50%] translate-x-[-50%] w-[234px] h-[56px] bg-red-500 text-center text-white m-auto flex items-center justify-center"
       >
         View all products
       </button>

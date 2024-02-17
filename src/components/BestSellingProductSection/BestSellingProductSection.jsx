@@ -41,10 +41,10 @@ const navigate= useNavigate()
       <div className="top-section flex h-[103px] w-[1170px] justify-between">
         <div className="left flex flex-col justify-between h-[103px] w-[600px]">
           <div className="section-name w-[200px] flex items-center">
-            <div className="rounded border-1 h-[40px] w-[20px] bg-secondary"></div>
-            <h2 className="px-4 font-semibold text-secondary">{data.name}</h2>
+            <div className="rounded border-1 h-[40px] w-[20px] bg-red-600"></div>
+            <h2 className="px-4 font-semibold text-red-600 ">{data.name}</h2>
           </div>
-          <div className="h-[50px]">
+          <div className="h-[50px] text-black">
             <h1 style={{ fontSize: "28px", fontWeight: "600" }}>
               Best selling Products
             </h1>

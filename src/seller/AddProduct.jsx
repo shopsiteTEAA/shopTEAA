@@ -75,7 +75,7 @@ const AddProduct = () => {
   };
   // now i need to get the cloudinary
   return (
-    <div>
+    <div className="h-full w-full">
       <div>
         <MinHeader />
         <Navbar />

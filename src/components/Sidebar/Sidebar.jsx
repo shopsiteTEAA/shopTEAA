@@ -2,34 +2,27 @@ import React from "react";
 
 const Sidebar = () => {
   return (
-    <div
-      style={{
-        width: "25%",
-        paddingLeft: "150px",
-        borderRight: "0.5px solid black",
-        display: "block",
-      }}
-      className="h-full "
-    >
+    <div className="w-1/4 border-r border-gray-300 p-8">
       <div className="sidebar-side">
-        <select>
+        <select className="mb-2">
           <option value="Woman’s Fashion">Woman’s Fashion</option>
-        </select><br />
-        <select>
-        <option value="Men’s Fashion">Men’s Fashion</option>
         </select>
         <br />
-        <a href="">Electronics </a>
+        <select className="mb-2">
+          <option value="Men’s Fashion">Men’s Fashion</option>
+        </select>
         <br />
-        <a href="">Medicine </a>
+        <a href="" className="mb-2 block">Electronics</a>
         <br />
-        <a href=""> Sports & Outdoor</a>
+        <a href="" className="mb-2 block">Medicine</a>
         <br />
-        <a href="">Baby’s & Toys</a>
+        <a href="" className="mb-2 block">Sports & Outdoor</a>
         <br />
-        <a href="">Groceries & Pets</a>
+        <a href="" className="mb-2 block">Baby’s & Toys</a>
         <br />
-        <a href="">Health & Beauty </a>
+        <a href="" className="mb-2 block">Groceries & Pets</a>
+        <br />
+        <a href="" className="mb-2 block">Health & Beauty</a>
       </div>
     </div>
   );

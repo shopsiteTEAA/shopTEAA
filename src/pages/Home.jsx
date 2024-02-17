@@ -55,8 +55,8 @@ const navigate = useNavigate()
           <ProductSection data={{ name: "Today" }} />
           <button
             onClick={() => navigate("/products")}
-            className="w-[234px] h-[56px] bg-secondary text-center
-         text-primary m-auto relative left-[50%] translate-x-[-50%]"
+            className="w-[234px] h-[56px] bg-red-500 text-center text-white 
+         text-primary m-auto mt-10  flex items-center justify-center translate-x-[-50%]"
           >
             View all products
           </button>
