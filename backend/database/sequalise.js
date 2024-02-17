@@ -1,115 +1,190 @@
-const { Sequelize, DataTypes, belongsToMany } = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 require("dotenv").config();
 const database = process.env.DATABASE;
 const username = process.env.USERNAME;
 const pwd = process.env.PWD;
 
-const schema = new Sequelize("teaa", "root", "eyajouini", {
+const sequelize = new Sequelize("teaa", "root", "eyajouini", {
   host: "localhost",
   dialect: "mysql",
 });
 
-
-
-const user = {
-  iduser: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-    allowNull: false
+const Product = sequelize.define(
+  "product",
+  {
+    idproduct: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+      allowNull: false,
+    },
+    name: { type: DataTypes.STRING, allowNull: false },
+    category: { type: DataTypes.STRING, allowNull: false },
+    rate: DataTypes.INTEGER,
+    status: { type: DataTypes.STRING, allowNull: false },
+    initalprice: DataTypes.INTEGER,
+    currentprice: DataTypes.INTEGER,
+    imgurlmain: { type: DataTypes.STRING, allowNull: false },
+    quantity: DataTypes.INTEGER,
+    description: DataTypes.TEXT,
+    userIduser : {
+      foreignKey : true,
+      allowNull : false,
+      type: DataTypes.INTEGER 
+    }
   },
-  firstname: DataTypes.STRING,
-  lastname: DataTypes.STRING,
-  email: DataTypes.STRING,
-  role: DataTypes.STRING,
-  phone: DataTypes.INTEGER,
-  adress: DataTypes.STRING,
-  pwd: DataTypes.STRING,
-};
+  { freezeTableName: true, timestamps: false }
+);
 
-const product = {
-  idproduct: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-    allowNull: false
+const ImgProduct = sequelize.define(
+  "imgproduct",
+  {
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-8044861-6430770.png',
+    },
+    productIdproduct : {
+      foreignKey : true,
+      allowNull : false,
+      type: DataTypes.INTEGER 
+    }
   },
-  name: DataTypes.STRING,
-  category: DataTypes.STRING,
-  rate: DataTypes.INTEGER,
-  price: DataTypes.INTEGER,
-  status: DataTypes.STRING,
-  initalprice: DataTypes.INTEGER,
-  currentprice: DataTypes.INTEGER,
-  imgurlmain: DataTypes.STRING,
-  colors1: DataTypes.STRING,
-  colors2: DataTypes.STRING,
-  colors3: DataTypes.STRING,
-  colors4: DataTypes.STRING,
-  img1: DataTypes.STRING,
-  img2: DataTypes.STRING,
-  img3: DataTypes.STRING,
-  img4: DataTypes.STRING,
-  quantity: DataTypes.INTEGER,
-  description: DataTypes.TEXT,
-};
+ 
+  { freezeTableName: true, timestamps: false }
+);
 
-const whichlist = {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-    allowNull: false
+const ColorProduct = sequelize.define(
+  "colorproduct",
+  {
+    color: { type: DataTypes.STRING, allowNull: false },
+    productIdproduct : {
+      foreignKey : true,
+      allowNull : false,
+      type: DataTypes.INTEGER 
+    }
   },
-};
-const panier = {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-    allowNull: false
+  { freezeTableName: true, timestamps: false }
+);
+
+const User = sequelize.define(
+  "user",
+  {
+    iduser: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+      allowNull: false,
+    },
+    firstname: { type: DataTypes.STRING, allowNull: false },
+    lastname: { type: DataTypes.STRING, allowNull: false },
+    email: { type: DataTypes.STRING, allowNull: false },
+    role: { type: DataTypes.STRING, allowNull: false },
+    phone: DataTypes.INTEGER,
+    adress: { type: DataTypes.STRING, allowNull: false },
+    pwd: { type: DataTypes.STRING, allowNull: false },
+    
   },
-  sum : DataTypes.INTEGER
-};
-const review_rate = {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-    allowNull: false
+  { freezeTableName: true, timestamps: false }
+);
+
+const Panier = sequelize.define(
+  "panier",
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+      allowNull: false,
+    },
+    sum: DataTypes.INTEGER,
+    userIduser : {
+      foreignKey : true,
+      allowNull : false,
+      type: DataTypes.INTEGER 
+    },
+    productIdproduct : {
+      foreignKey : true,
+      allowNull : false,
+      type: DataTypes.INTEGER 
+    }
+    
   },
-};
+  { freezeTableName: true, timestamps: false }
+);
 
+const ReviewRate = sequelize.define(
+  "review_rate",
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+      allowNull: false,
+    },
+    rateofuser: { type: DataTypes.INTEGER, allowNull: false },
+    userIduser : {
+      foreignKey : true,
+      allowNull : false,
+      type: DataTypes.INTEGER 
+    },
+    productIdproduct : {
+      foreignKey : true,
+      allowNull : false,
+      type: DataTypes.INTEGER 
+    }
+  },
+  { freezeTableName: true, timestamps: false }
+);
 
+const Wishlist = sequelize.define(
+  "wichlist",
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+      allowNull: false,
+    },
+    userIduser : {
+      foreignKey : true,
+      allowNull : false,
+      type: DataTypes.INTEGER 
+    },
+    productIdproduct : {
+      foreignKey : true,
+      allowNull : false,
+      type: DataTypes.INTEGER 
+    }
+  },
+  { freezeTableName: true, timestamps: false }
+);
 
-// define
-const User = schema.define("user", user,{freezeTableName: true , timestamps: false});
-const Product = schema.define("product", product,{freezeTableName: true ,timestamps: false});
-const Panier = schema.define("panier", panier,{freezeTableName: true ,timestamps: false});
-const Review_rate = schema.define("review_rate", review_rate,{freezeTableName: true , timestamps: false});
-const Whichlist = schema.define("wichlist", whichlist,{freezeTableName: true ,timestamps: false});
+// Associations
+ImgProduct.belongsTo(Product ,{ foreignKey: 'productIdproduct' , onDelete: 'CASCADE' });
+Product.hasMany(ImgProduct)
+ColorProduct.belongsTo(Product ,{ foreignKey: 'productIdproduct' , onDelete: 'CASCADE' });
+Product.hasMany(ColorProduct)
+User.belongsToMany(Product, { through: Panier });
+Product.belongsToMany(User, { through: Panier });
+// realtion between saler 
+Product.belongsTo(User, { foreignKey: 'userIduser' , onDelete: 'CASCADE' });
+User.hasMany(Product, { foreignKey: 'userIduser', onDelete: 'CASCADE' });
 
+Wishlist.belongsTo(User , { foreignKey: 'userIduser' , onDelete: 'CASCADE' } );
+Wishlist.belongsTo(Product , { foreignKey: 'productIdproduct' , onDelete: 'CASCADE' });
 
-// Define associations
-User.belongsToMany(Product, { through: "panier", foreignKey: "user_iduser" });
-Product.belongsToMany(User, { through: "panier",foreignKey: "product_idproduct",});
+ReviewRate.belongsTo(User,{ foreignKey: 'userIduser', onDelete: 'CASCADE' });
+ReviewRate.belongsTo(Product,{ foreignKey: 'productIdproduct' , onDelete: 'CASCADE' });
 
-Whichlist.belongsTo(User, { foreignKey: "user_iduser" });
-Whichlist.belongsTo(Product, { foreignKey: "product_idproduct" });
+sequelize.sync({alter:true});
 
-Review_rate.belongsTo(User, { foreignKey: "user_iduser" });
-Review_rate.belongsTo(Product, { foreignKey: "product_idproduct" });
-
-
-schema.sync({alter : true})
-
-module.exports ={
-  User : User,
+module.exports = {
   Product : Product,
-  Whichlist :Whichlist,
-  Review_rate :Review_rate,
-  Panier : Panier,
-
-}
-
-
+  ImgProduct :ImgProduct,
+  ColorProduct :ColorProduct,
+  User :User,
+  Panier:Panier,
+  ReviewRate :ReviewRate,
+  Wishlist :Wishlist,
+};

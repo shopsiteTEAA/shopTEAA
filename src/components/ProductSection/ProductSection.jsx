@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useContext,useState,useEffect } from "react";
 import Countdown from "react-countdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import ProductCard from "../ProductCard/ProductCard";
+import { productcontext } from "../../pages/Home";
+import axios from "axios";
+
 
 function ProductSection({ data, timer }) {
   const Completionist = () => <span>You are good to go!</span>;
+const {products,setProducts}=useContext(productcontext)
+
+
+useEffect(() => {
+  axios.get("http://localhost:3001/saler/getallprod").then((res) => {
+    setProducts(res.data);
+
+    console.log(res.data);
+  });
+}, []);
+
+
 
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
@@ -45,7 +60,7 @@ function ProductSection({ data, timer }) {
         <div className="left flex flex-col justify-between h-[103px] w-[600px]">
           <div className="section-name w-[200px] flex items-center">
             <div className="rounded border-1 h-[40px] w-[20px] bg-secondary"></div>
-            <h2 className="px-4 font-semibold text-secondary">{data.name}</h2>
+            <h2 className="px-4 font-semibold text-secondary">today</h2>
           </div>
           <div className="timer h-[50px]">
             <Countdown
@@ -54,14 +69,12 @@ function ProductSection({ data, timer }) {
             />
           </div>
         </div>
-        <div className="right h-[103px] w-[570px] bg-primary"></div>
+        <div className="right h-[103px] w-[570px] "></div>
       </div>
       <div className="products-list mt-10 grid-rows-1 gap-x-8 grid-flow-col grid">
-        <ProductCard data={{discount: true}} />
-        <ProductCard data={{discount: true}} />
-        <ProductCard data={{discount: true}} />
-        <ProductCard data={{discount: true}} />
-        <ProductCard data={{discount: true}} />
+        {products.map((e, i) => (
+          <ProductCard data={e} key={i} />
+        ))}
       </div>
     </div>
   );

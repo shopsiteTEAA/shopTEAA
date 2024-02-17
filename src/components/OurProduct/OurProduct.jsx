@@ -1,7 +1,11 @@
-import React from 'react'
-import ProductCard from '../ProductCard/ProductCard';
+import React, { useContext } from "react";
+import ProductCard from "../ProductCard/ProductCard";
+import { productcontext } from "../../pages/Home";
+import { useNavigate } from "react-router-dom";
 
-function OurProduct({data}) {
+function OurProduct({ data }) {
+  const navigate= useNavigate()
+  const { products } = useContext(productcontext)
   return (
     <div className="h-[493px] relative top-[900px]">
       <div className="top-section flex h-[103px] w-[1170px] justify-between">
@@ -16,11 +20,11 @@ function OurProduct({data}) {
             </h1>
           </div>
         </div>
-        <div className="right h-[103px] w-[570px] relative bg-primary">
+        <div className="right h-[103px] w-[570px] relative ">
           {data.viewProduct && (
             <button
-              className="w-[159px] h-[46px] bg-secondary absolute top-[50%] right-0 translate-y-[-50%] text-center
-         text-primary"
+              className="w-[159px] h-[46px] bg-#db4444 absolute top-[50%] right-0 translate-y-[-50%] text-center
+                     text-primary"
             >
               View all
             </button>
@@ -28,22 +32,19 @@ function OurProduct({data}) {
         </div>
       </div>
       <div className="products-list mt-10 grid-rows-1 gap-x-8 grid-flow-col grid">
-        <ProductCard data={{ discount: false }} />
-        <ProductCard data={{ discount: false }} />
-        <ProductCard data={{ discount: false }} />
-        <ProductCard data={{ discount: false }} />
+        {products.map((e, i) => (
+          <ProductCard data={e} key={i} />
+        ))}
       </div>
-
-      {data.secondRow && (
-        <div className="products-list mt-10 grid-rows-1 gap-x-8 grid-flow-col grid">
-          <ProductCard data={{ discount: false }} />
-          <ProductCard data={{ discount: false }} />
-          <ProductCard data={{ discount: false }} />
-          <ProductCard data={{ discount: false }} />
-        </div>
-      )}
+      <button
+        onClick={() => navigate("/products")}
+        className="w-[234px] h-[56px] bg-secondary text-center
+         text-primary m-auto relative  left-[50%] translate-x-[-50%]"
+      >
+        View all products
+      </button>
     </div>
   );
 }
 
-export default OurProduct
+export default OurProduct;

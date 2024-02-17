@@ -16,7 +16,7 @@ function CategorySection() {
             </h1>
           </div>
         </div>
-        <div className="right h-[103px] w-[570px] bg-primary"></div>
+        <div className="right h-[103px] w-[570px] "></div>
       </div>
       <CategoryCards />
     </div>
