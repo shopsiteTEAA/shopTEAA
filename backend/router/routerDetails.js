@@ -1,10 +1,6 @@
-const RouterDetails = require('express').Router()
-const controllerdetail = require('../controller/Detailscontroller.js')
+const RouterDetails = require('express').Router();
+const { Oneproductdetail } = require('../controller/Detailscontroller.js'); 
 
+RouterDetails.get('/One/:id', Oneproductdetail);
 
-
-RouterDetails.get('/One/:id',controllerdetail.Oneproductdetail)
-
-
-
-module.exports= RouterDetails
+module.exports = RouterDetails;

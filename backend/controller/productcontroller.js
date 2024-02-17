@@ -117,5 +117,36 @@ module.exports={
         catch(err){
             console.log('err in getting product',err);
         }
+    },
+    GetallProductSaler : async (req,res)=>{
+        const id = req.params.id
+        try{
+            const results = await prod.getallproductsaler(id)
+            res.status(200).send(results)
+
+        }
+        catch(err){
+            console.log(err);
+        }
+    },
+    NewProductsInStore : async(req,res)=>{
+       try{
+        const results = await prod.newProductsInStore()
+        res.status(200).send(results)
+       }
+       catch(err){
+        console.log('err',err);
+       }
+    },
+    NewProductsInStoreuser : async(req,res)=>{
+        try{
+            const id = req.params.id
+            const results = await prod.newProductsInStore(id)
+        res.status(200).send(results)
+        }
+        catch(err){
+            console.log(err);
+        }
     }
+
 } 

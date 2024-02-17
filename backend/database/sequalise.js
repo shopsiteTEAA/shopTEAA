@@ -33,7 +33,7 @@ const Product = sequelize.define(
       type: DataTypes.INTEGER 
     }
   },
-  { freezeTableName: true, timestamps: false }
+  { freezeTableName: true, timestamps: true }
 );
 
 const ImgProduct = sequelize.define(
@@ -177,14 +177,19 @@ Wishlist.belongsTo(Product , { foreignKey: 'productIdproduct' , onDelete: 'CASCA
 ReviewRate.belongsTo(User,{ foreignKey: 'userIduser', onDelete: 'CASCADE' });
 ReviewRate.belongsTo(Product,{ foreignKey: 'productIdproduct' , onDelete: 'CASCADE' });
 
+
 sequelize.sync({alter:true});
 
 module.exports = {
-  Product : Product,
+  Product :Product,
+  Wishlist :Wishlist,
+  Reviewrate :ReviewRate,
+  Panier :Panier,
   ImgProduct :ImgProduct,
   ColorProduct :ColorProduct,
-  User :User,
-  Panier:Panier,
-  ReviewRate :ReviewRate,
-  Wishlist :Wishlist,
-};
+  User :User
+
+
+}
+
+

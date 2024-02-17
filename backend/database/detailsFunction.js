@@ -1,4 +1,4 @@
-const {Product} = require ('../database/sequalise')
+const Product = require ('../database/sequalise.js')
 
 
 const One=(id)=>{

@@ -1,11 +1,18 @@
-import React from 'react';
+import React,{useState} from 'react';
 import "../../App.css";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-
+import axios from "axios"
+import { AiOutlineSync } from "react-icons/ai";
+import { BsTruck } from "react-icons/bs";
 
 function GamepadDetails() {
+  const [sum,setSum]=useState(1)
+  const handleAdd=()=>{
+    axios.post(`http://localhost:3000/panier/addtoCart/1/1`,{sum}).then(()=>{
+      console.log("added to basket");
+    })
+  }
   return (
     <div className="w-[600px] h-[450px]">
       <div><i>Havic HV G-92 Gamepad</i></div>
@@ -73,20 +80,20 @@ function GamepadDetails() {
       <div className="flex mt-4">
         <div className="w-15 h-11 relative rounded-tl rounded-bl border border-black border-opacity-50 flex items-center">
           <div className="w-[41px] h-9 flex justify-center items-center rounded-tr rounded-br">
-            <button className="text-black text-2xl">-</button>
+            <button onClick={()=>{(sum!==1)&&setSum(sum-1)}} className="text-black text-2xl">-</button>
           </div>
         </div>
         <div className="w-[100px] h-11 flex border-t border-b border-black border-opacity-50 justify-center items-center">
         
-  <p className="text-center">{/*quantity*/}</p>
+  <p className="text-center">{sum}</p>
     </div>
     <div className="w-[41px] h-11 flex justify-center items-center bg-red-500 rounded-tr rounded-br">
-      <button className=" text-white ">+</button>
+      <button onClick={()=>{setSum(sum+1)}} className=" text-white ">+</button>
    </div>
 
    <div className="w-[165px] h-11 ml-5 bg-red-500 rounded justify-center items-center gap-2.5 inline-flex">
    <div className="text-neutral-50 text-base font-medium font-['Poppins'] leading-normal">
-     <button>Get it</button>
+     <button onClick={()=>{handleAdd()}}>Get it</button>
    </div>
  </div>
 </div>
@@ -98,6 +105,7 @@ function GamepadDetails() {
       <div className="w-full rounded border flex-col border-black border-opacity-50 mt-8">
       <div className="p-2">
         <div className="flex justify-start items-center gap-4">
+        <BsTruck className='h-10 w-10'/>
           <div className="">
             <box-icon size="md" name="truck" type="solid"></box-icon>
           </div>
@@ -122,17 +130,24 @@ function GamepadDetails() {
       <div className="border border-black opacity-50"></div>
       <div className="p-2">
         <div className="flex justify-start items-center gap-4">
+        <AiOutlineSync className='h-10 w-10'/>
           <div className="">
             <box-icon size="md" name="refresh" animation="spin"></box-icon>
           </div>
           <div className=" p-2 flex-col">
+          
             <div className="text-black text-base font-medium font-['Poppins'] leading-normal">
-              Return Delivery
+           
+           Return Delivery
             </div>
             <div>
+           
               <span className="text-black text-xs font-medium font-['Poppins'] leading-none">
+             
                 Free 30 Days Delivery Returns.
+                
               </span>
+         
               <span className="text-black text-xs font-medium font-['Poppins'] underline leading-none">
                 Details
               </span>

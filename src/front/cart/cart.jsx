@@ -17,24 +17,26 @@ const navigate=useNavigate()
 
 
 useEffect((id) => {
-  axios.get(`http://localhost:3000/panier/getAllcarts/${id}`)
+  axios.get(`http://localhost:3000/panier/getAllcarts/${1}`)
     .then((response)=>{
-      setData(response.data)})
+      setData(response.data)
+    console.log(response.data);})
     .catch((error)=>{console.log(error)})
 },[refresh])
 
 
 
-const deletee=(id,Product)=>{
-    axios.delete(`http://localhost:3000/panier/deletecart/${id}/${Product}`)
+const deletee=(product)=>{
+    axios.delete(`http://localhost:3000/panier/deletecart/${product}`)
       .then((res)=>{
-        console.log(res.data)
+        console.log(res)
         setRefresh(!refresh)})
       .catch((err)=>{console.log(err)})
   }
   
 
   const total=(quantity,price)=>{
+    console.log(quantity,price)
     return quantity * price
   };
 
@@ -47,29 +49,7 @@ const deletee=(id,Product)=>{
         </h1>
 
 
-        {data.map((item, i) => (
-          <div key={i} className='grid grid-cols-4 mt-10 shadow items-center h-14 w-5/6 ' style={{'display':'flex','justifyContent':'space-around'}}>
-            <img className='w-10 ml-10' src={item.image} alt="" />
-            <h1 className='ml-10'>{item.initialprice}</h1>
-            <input
-              className='w-10 ml-10 border-gray-300 border rounded'
-              type="number"
-              value={item.quantity || 1}
-              onChange={(e) => {
-                const quantityP = parseInt(e.target.value)
-                setData(myData =>{
-                  const newData = [...myData];
-                  newData[i].quantity = isNaN(quantityP) ? 1 : quantityP
-                  return newData;
-                });
-              }}
-            />
-            <h1 className='ml-20'>{total(item.quantity || 1, item.initialprice)} $</h1>
-            <MdDelete className='ml-10 cursor-pointer'  onClick={() => {deletee(item.id)}}/>
-            
-          </div>
-          
-        ))}
+
         <div>
         <div className='grid grid-cols-4 mt-10 shadow items-center h-14 w-5/6 '>
         <h1 className='ml-20'>Product</h1>
@@ -77,17 +57,32 @@ const deletee=(id,Product)=>{
         <h1 className='ml-20'>Quantity</h1>
         <h1 className='ml-10'>Subtotal</h1>
       </div>
-       
-       <div className=' grid grid-cols-4 mt-10 shadow items-center h-14 w-5/6 '>
-        <div className="flex items-center">
+
+      {data.map((item, i) => (
+        <div key={i} className='grid grid-cols-4 mt-10 shadow items-center h-14 w-5/6 ' style={{'display':'flex','justifyContent':'space-around'}}>
+          <img className='w-10 ml-10' src={item.product.imgurlmain} alt="" />
+          <h1 className='ml-10'>{item.initialprice}</h1>
+          <input
+            className='w-10 ml-10 border-gray-300 border rounded'
+            type="number"
+            value={item.sum}
+            onChange={(e) => {
+              const quantityP = parseInt(e.target.value)
+              setData(myData =>{
+                const newData = [...myData]
+                newData[i].quantity = isNaN(quantityP) ? 1 : quantityP
+                return newData;
+              });
+            }}
+          />
+          <h1 className='ml-20'>{total(item.sum, item.product.initalprice)} $</h1>
+          <MdDelete className='ml-10 cursor-pointer'  onClick={() => {deletee(item.id)}}/>
           
-        <button className='shadow border-gray-300 border w-40 h-14 border rounded text-sm'></button>
-  
-        <input className="shadow border-gray-300 border ml-4 w-40 h-14 rounded text-sm" type="number" style={{ width: '72px', height: '44px', borderRadius: '4px', border: '1.5px solid', justifyContent: 'space-around' }}/>
         </div>
-        <button className='shadow border-gray-300 border w-40 h-14 border rounded text-sm'></button>
-            </div>
-            </div>
+        
+      ))}
+
+</div>
 
 
         <div className='mt-20 '>
