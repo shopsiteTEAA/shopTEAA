@@ -4,11 +4,13 @@ import Navbar from "../Ccomponents/Navbar";
 import Fotter from "../Ccomponents/Fotter";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const UpdateProduct = () => {
   const { idprod } = useParams();
   const [data, setData] = useState([]);
-  const navigate = useNavigate()
+  const [newphoto, setNewPhoto] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get(`http://localhost:3000/saler/getproduct/${idprod}`)
@@ -19,7 +21,25 @@ const UpdateProduct = () => {
         console.log(err);
       });
   }, []);
-  console.log('product ',data[0]);
+
+  const updatephoto = async (image) => {
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("upload_preset", "AmineTessiku");
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/du0wpkjrs/upload",
+        formData
+      );
+      console.log(response.data.secure_url);
+      return response.data.secure_url;
+    } catch (error) {
+      console.error("Error uploading image to Cloudinary:", error);
+    }
+  };
+
+  const notifySuccess = () => toast.success("Product added successfully!");
+  console.log("product ", data);
 
   const [name, setName] = useState(data.name);
   const [Category, setCategory] = useState(data.category);
@@ -28,33 +48,35 @@ const UpdateProduct = () => {
   const [currentPrice, setCurrentPrice] = useState(data.currentPrice);
   const [quantity, setQuantity] = useState(data.quantity);
   const [description, setDiscription] = useState(data.description);
-  const [photo, setPhoto] = useState(data.imgurlmain);
 
 
-  const newProduct = {
-    name: name,
-    category: Category,
-    rate: rate,
-    status: "available",
-    initalprice: intialPrice,
-    currentprice: currentPrice,
-    // image and the color need to be handled
-    imgurlmain: photo,
-    color: "blue",
-    image: "img5",
-    quantity: quantity,
-    description: description,
-  };
-  const updateprodnew= (newProduct) => {
-    axios
-      .put(`http://localhost:3000/saler/update/${idprod}`, newProduct)
-      .then(() => {
-        console.log("data inserted !");
-        navigate('/saler/allProduct')
-      })
-      .catch((err) => {
-        console.log("err in insert data from the frontend", err);
-      });
+  const updateprodnew = async () => {
+    try {
+      const updatepho = await updatephoto(newphoto);
+      console.log(updatepho);
+  
+      const newProduct = {
+        name: name,
+        category: Category,
+        rate: rate,
+        status: "available",
+        initalprice: intialPrice,
+        currentprice: currentPrice,
+        imgurlmain: updatepho,
+        quantity: quantity,
+        description: description,
+      };
+      axios.put(`http://localhost:3000/saler/update/${idprod}`, newProduct)
+        .then(() => {
+          console.log("data inserted !");
+          notifySuccess();
+        })
+        .catch((err) => {
+          console.log("err in insert data from the frontend", err);
+        });
+    } catch (err) {
+      console.log("err in update product in front !", err);
+    }
   };
   // now i need to get the cloudinary
   return (
@@ -62,6 +84,7 @@ const UpdateProduct = () => {
       <div>
         <MinHeader />
         <Navbar />
+        <ToastContainer />
       </div>
       <div className="w-full h-full  font-semibold ml-36 mt-8 ">
         <p>
@@ -192,15 +215,24 @@ const UpdateProduct = () => {
             </label>
 
             <div class="mb-8">
-              <input type="file" name="file" id="file" class="sr-only" />
+              <input
+                type="file"
+                name="file"
+                id="file"
+                class="sr-only"
+                onChange={(ele) => {
+                  setNewPhoto(ele.target.files[0])
+                  updatephoto(ele.target.files[0]);
+                }}
+              />
               <label
                 for="file"
                 class="relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-12 text-center"
               >
                 <div>
-                  <span class="mb-2 block text-xl font-semibold text-[#07074D]">
-                    Drop files here
-                  </span>
+                  {/* <Cloudinary setImageUrls={setImageUrls} /> */}
+
+                  <span class="mb-2 block text-xl font-semibold text-[#07074D]"></span>
                   <span class="mb-2 block text-base font-medium text-[#6B7280]">
                     Or
                   </span>
@@ -214,7 +246,7 @@ const UpdateProduct = () => {
             <div>
               <button
                 onClick={() => {
-                  updateprodnew(newProduct);
+                  updateprodnew();
                 }}
                 class="hover:shadow-div w-full rounded-md bg-rose-600 py-3 px-8 text-center text-base font-semibold text-white outline-none"
               >

@@ -7,98 +7,72 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
-const navigate = useNavigate()
-const [name, setName] = useState("");
-const [Category, setCategory] = useState("");
-const [rate, setRate] = useState("");
-const [intialPrice, setIntialPrice] = useState("");
-const [currentPrice, setCurrentPrice] = useState("");
-const [quantity, setQuantity] = useState("");
-const [description, setDiscription] = useState("");
-const [productPhoto, setProductPhoto] = useState([]);
-const [photo, setPhoto] = useState([]);
+  const navigate = useNavigate()
+  const [name, setName] = useState("");
+  const [Category, setCategory] = useState("");
+  const [rate, setRate] = useState("");
+  const [intialPrice, setIntialPrice] = useState("");
+  const [currentPrice, setCurrentPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [description, setDiscription] = useState("");
+  const [photo, setPhoto] = useState([]);
 
-// set multipel images 
-const handleImageChange = (e) => {
-  const selectedImages = Array.from(e.target.files);
-  setImages(selectedImages);
-};
+  const handleImageChange = (e) => {
+    const selectedImages = Array.from(e.target.files);
+    console.log(selectedImages);
+    setPhoto(selectedImages);
+  };
 
-const notifySuccess = () => toast.success("Product added successfully!");
-// const newProduct = {
-//   name: name,
-//   category: Category,
-//   rate: rate,
-//   status: "available",
-//   initalprice: intialPrice,
-//   currentprice: currentPrice,
-//   imgurlmain: productPhoto, 
-//   color: "blue",
-//   image: "img5",
-//   quantity: quantity,
-//   description: description,
-// }
-const insertProduct = async () => {
-  try {
-    // const uploadImgs = async () => {
-    //   const form = new FormData();
-    //   form.append('file', photo);
-    //   form.append('upload_preset', "AmineTessiku");
-    //   try {
-    //     const results = await axios.post(`https://api.cloudinary.com/v1_1/du0wpkjrs/upload`, form);
-    //     console.log(results.data.secure_url);
-    //     return results.data.secure_url;
-    //   } catch (err) {
-    //     console.log('Error in getting img from Cloudinary ', err);
-    //     throw err; // Propagate the error
-    //   }
-    // };
+  const uploadImage = async (image) => {
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("upload_preset", "AmineTessiku");
 
-    // const productPhoto1 = await uploadImgs();
-    // console.log(productPhoto1);
-    const uploadImages = async () => {
-      try {
-        const uploadPromises = images.map(async (image) => {
-          const formData = new FormData();
-          formData.append('file', image);
-          formData.append('upload_preset', 'AmineTessiku');
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/du0wpkjrs/upload",
+        formData
+      );
+      return response.data.secure_url;
+    } catch (error) {
+      console.error("Error uploading image to Cloudinary:", error);
+    }
+  };
+
+  const notifySuccess = () => toast.success("Product added successfully!");
+
+  const insertProduct = async () => {
+    try {
+      const mainImageUrl = await uploadImage(photo[0]);
+      const additionalImageUrls = await Promise.all(photo.slice(1).map(uploadImage));
   
-          const response = await axios.post(
-            'https://api.cloudinary.com/v1_1/du0wpkjrs/upload',
-            formData
-          );
+      const newProduct = {
+        name: name,
+        category: Category,
+        rate: rate,
+        status: "available",
+        initalprice: intialPrice,
+        currentprice: currentPrice,
+        imgurlmain: mainImageUrl,
+        color: "blue",
+        quantity: quantity,
+        description: description,
+        image :{
+        image1: additionalImageUrls[0] || "",
+        image2: additionalImageUrls[1] || "",
+        image3: additionalImageUrls[2] || "",
+        image4: additionalImageUrls[3] || "",
+        }
+      };
   
-          return response.data.secure_url;
-        });
-  
-        const uploadedImageUrls = await Promise.all(uploadPromises);
-        setProductPhoto(uploadedImageUrls);
-      } catch (error) {
-        console.error('Error uploading images to Cloudinary:', error);
-      }
-    };
-
-    const newProduct = {
-      name: name,
-      category: Category,
-      rate: rate,
-      status: "available",
-      initalprice: intialPrice,
-      currentprice: currentPrice,
-      imgurlmain: productPhoto[0],
-      color: "blue",
-      image: "img5",
-      quantity: quantity,
-      description: description,
-    };
-
-    await axios.post(`http://localhost:3000/saler/createprod/1`, newProduct);
-    notifySuccess();
-    navigate('/saler');
-  } catch (err) {
-    console.log('Error in insert data from the frontend', err);
-  }
-};
+      await axios.post("http://localhost:3000/saler/createprod/1", newProduct);
+      console.log(newProduct);
+      notifySuccess();
+      // navigate('/saler')
+    } catch (err) {
+      console.log('Error in insert data from the frontend', err);
+    }
+  };
   // now i need to get the cloudinary
   return (
     <div>
@@ -237,10 +211,10 @@ const insertProduct = async () => {
             </label>
 
             <div class="mb-8">
-              <input type="file" name="file" id="file" class="sr-only"  onChange={
+              <input type="file" name="file" id="file" class="sr-only" multiple  onChange={
                 // need to make it not files not file[0] (for one image input ! )
                     // setPhoto(ele.target.files[0])
-                    handleImageChange()
+                    handleImageChange
               }/>
               <label
                 for="file"
@@ -262,7 +236,7 @@ const insertProduct = async () => {
 
             <div>
               <button onClick={()=>{
-                insertProduct(newProduct)
+                insertProduct()
               }} class="hover:shadow-div w-full rounded-md bg-rose-600 py-3 px-8 text-center text-base font-semibold text-white outline-none">
                 Add The New Product
               </button>

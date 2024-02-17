@@ -39,7 +39,22 @@ const Product = sequelize.define(
 const ImgProduct = sequelize.define(
   "imgproduct",
   {
-    image: {
+    image1: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-8044861-6430770.png',
+    },
+    image2: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-8044861-6430770.png',
+    },
+    image3: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-8044861-6430770.png',
+    },
+    image4: {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: 'https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-8044861-6430770.png',
@@ -188,8 +203,6 @@ module.exports = {
   ImgProduct :ImgProduct,
   ColorProduct :ColorProduct,
   User :User
-
-
 }
 
 
