@@ -3,6 +3,7 @@ import MinHeader from "../Ccomponents/MinHeader";
 import Navbar from "../Ccomponents/Navbar";
 import Fotter from "../Ccomponents/Fotter";
 import axios from "axios";
+import Cloudinary from "../handlerPages/Cloudinary";
 
 const AddProduct = () => {
   const [name, setName] = useState("");
@@ -12,7 +13,9 @@ const AddProduct = () => {
   const [currentPrice, setCurrentPrice] = useState("");
   const [quantity, setQuantity]= useState("");
   const [description, setDiscription] = useState("");
-  const [photo, setPhoto] = useState("img");
+  const [imageUrls, setImageUrls] = useState([]); 
+
+
 
   const newProduct = {
     name: name,
@@ -22,7 +25,7 @@ const AddProduct = () => {
     initalprice: intialPrice,
     currentprice: currentPrice,
     // image and the color need to be handled 
-    "imgurlmain": photo,
+    imgurlmain: imageUrls ,
     color: "blue",
     image: "img5",
     quantity: quantity,
@@ -32,7 +35,7 @@ const AddProduct = () => {
     // need now to get the id from cookies 
     axios.post(`http://localhost:3000/saler/createprod/1`,newProduct)
     .then(()=>{
-      console.log('data inserted !');
+      console.log('data inserted !'); 
     })
     .catch((err)=>{
       console.log('err in insert data from the frontend',err);
@@ -181,8 +184,8 @@ const AddProduct = () => {
                 class="relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-12 text-center"
               >
                 <div>
+                <Cloudinary setImageUrls={setImageUrls} />
                   <span class="mb-2 block text-xl font-semibold text-[#07074D]">
-                    Drop files here
                   </span>
                   <span class="mb-2 block text-base font-medium text-[#6B7280]">
                     Or
