@@ -4,6 +4,7 @@ import Navbar from "../Ccomponents/Navbar";
 import Fotter from "../Ccomponents/Fotter";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import Cloudinary from "../handlerPages/Cloudinary";
 
 const UpdateProduct = () => {
   const { idprod } = useParams();
@@ -29,6 +30,7 @@ const UpdateProduct = () => {
   const [quantity, setQuantity] = useState(data.quantity);
   const [description, setDiscription] = useState(data.description);
   const [photo, setPhoto] = useState(data.imgurlmain);
+  const [imageUrls, setImageUrls] = useState([]);
 
 
   const newProduct = {
@@ -39,7 +41,7 @@ const UpdateProduct = () => {
     initalprice: intialPrice,
     currentprice: currentPrice,
     // image and the color need to be handled
-    imgurlmain: photo,
+    imgurlmain: imageUrls,
     color: "blue",
     image: "img5",
     quantity: quantity,
@@ -187,6 +189,7 @@ const UpdateProduct = () => {
           </div>
 
           <div class="mb-6 pt-4">
+
             <label class="mb-5 block text-xl font-semibold text-[#07074D]">
               Upload File
             </label>
@@ -198,8 +201,10 @@ const UpdateProduct = () => {
                 class="relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-12 text-center"
               >
                 <div>
+                <Cloudinary setImageUrls={setImageUrls} />
+
                   <span class="mb-2 block text-xl font-semibold text-[#07074D]">
-                    Drop files here
+                    
                   </span>
                   <span class="mb-2 block text-base font-medium text-[#6B7280]">
                     Or

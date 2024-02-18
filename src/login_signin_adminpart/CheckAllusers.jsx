@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../Ccomponents/Navbar";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import NavbarAdmin from "../Ccomponents/NavbarAdmin";
 
 
 function CheckAllusers() {
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate =useNavigate()
   const [cookies, setCookies, removeCookie] = useCookies(["token"]);
   const tokn = cookies.token;
@@ -27,12 +28,16 @@ function CheckAllusers() {
       });
   }, []);
 
-  const deleteUser=(iduser)=>{
+  const deleteUser = (iduser) => {
     axios.delete(`http://localhost:3000/user/deleteuser/${iduser}`)
-    .then(()=>{
-      console.log('user deleted')
-      window.location.reload()
-    }).catch((err)=>{console.log(err)})
+      
+      .then(() => {
+        console.log("user deleted");  
+        window.location.reload()      
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   console.log(users);
@@ -40,10 +45,16 @@ function CheckAllusers() {
   const updateTheUser=(iduser)=>{
     navigate(`/UpdateList/${iduser}`)
   }
+  const filteredUsers = users.filter((user) => {
+    return (
+      user.firstname.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.lastname.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  })
 
   return (
     <div>
-      <Navbar />
+      <NavbarAdmin />
       <div>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <div className="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white dark:bg-gray-900">
@@ -118,6 +129,8 @@ function CheckAllusers() {
                 id="table-search-users"
                 className="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search for users"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
           </div>
@@ -146,7 +159,7 @@ function CheckAllusers() {
               </tr>
             </thead>
             <tbody>
-              {users?.map((ele) => {
+              {filteredUsers?.map((ele) => {
                 return <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                   <td className="w-4 p-4">
                     <div className="flex items-center">
@@ -403,7 +416,7 @@ function CheckAllusers() {
           </div>
         </div>
       </div>
-      )
+      
     </div>
   );
 }
