@@ -60,13 +60,6 @@ const navigate= useNavigate()
           </button>
         </div>
       </div>
-      {/* <div className="products-list mt-10 grid-rows-1 gap-x-8 grid-flow-col grid">
-        <ProductCard data={{ discount: false }} />
-        <ProductCard data={{ discount: false }} />
-        <ProductCard data={{ discount: false }} />
-        <ProductCard data={{ discount: false }} />
-      </div> */}
-
       {filtered.map((productGroup, i) => (
         <div className="products-list grid-rows-1 gap-x-8 grid-flow-col grid">
           {productGroup.map((e, j) => (

@@ -8,7 +8,6 @@ import CategorySection from "../components/CategorySection/CategorySection";
 import BestSellingProductSection from "../components/BestSellingProductSection/BestSellingProductSection";
 import ImageBanner from "../components/ImageBanner/ImageBanner";
 import OurProduct from "../components/OurProduct/OurProduct";
-import axios from "axios";
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Fotter from "../components/Fotter1/Fotter";
@@ -27,19 +26,12 @@ const Productprovider = ({ children }) => {
 
 
 function Home() {
-
- const navigateToProducts = () => {
-  
- }
-
 const navigate = useNavigate()
-
 
 
   return (
     <Productprovider>
       <div className="h-[5400px]">
-        <Header></Header>
         <div
           style={{
             display: "flex",
@@ -81,7 +73,6 @@ const navigate = useNavigate()
               secondRow: true,
             }}
           />
-          
         </div>
       </div>
       <Fotter />

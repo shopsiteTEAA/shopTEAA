@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import MinHeader from "../Ccomponents/MinHeader";
 import Navbar from "../Ccomponents/Navbar";
-import LeftSideBar from "../seller/LeftSideBar";
 import axios from "axios";
 import Fotter from "../Ccomponents/Fotter";
+import { useNavigate } from "react-router";
 
 // createContext ,useContext,
 // import TablesProd from "./TablesProd";
 
 // export const usercontext = createContext()
 const MainPageSaller = () => {
+  const navigate = useNavigate()
   const [data, setdata] = useState([]);
-  const [datatoprate,setDatatoprate] =useState ([]);
-  useEffect( () => {
+  const [datatoprate, setDatatoprate] = useState([]);
+  const [prodseller, setProdseller] = useState([]);
+  useEffect(() => {
     axios
       .get(`http://localhost:3000/saler/newestproductStore`)
       .then((data) => {
@@ -22,14 +24,24 @@ const MainPageSaller = () => {
       .catch((err) => {
         console.log("err", err);
       });
-
-      axios.get(`http://localhost:3000/saler/toprateprod`)
-      .then((data)=>{
-        setDatatoprate(data.data)
+    // axois for the top product in the store
+    axios
+      .get(`http://localhost:3000/saler/toprateprod`)
+      .then((data) => {
+        setDatatoprate(data.data);
       })
-      .catch((err)=>{
-        console.log('err',err);
+      .catch((err) => {
+        console.log("err", err);
+      });
+    // axois for the product inserted by that user !
+    axios
+      .get(`http://localhost:3000/saler/getallprod/1`)
+      .then((data) => {
+        setProdseller(data.data);
       })
+      .catch((err) => {
+        console.log("err", err);
+      });
   }, []);
   console.log(data);
 
@@ -41,7 +53,6 @@ const MainPageSaller = () => {
       </div>
       <div className=" mt-10 ml-31  w-full h-full">
         <div className=" text-center mt-4 w-full items-center h-full flex justify-center">
-
           <div class=" items-center bg-white shadow-lg rounded-2xl w-96 ">
             <img
               alt="profil"
@@ -49,37 +60,38 @@ const MainPageSaller = () => {
               class="w-full mb-4 rounded-t-lg h-28"
             />
             <div class="flex flex-col items-center justify-center p-4 -mt-16">
-              <a href="#" class="relative block">
+              <a  class="relative block">
                 <img
+                  onClick={()=>{
+                    navigate('/saler/edit')
+                  }}
                   alt="profil"
                   src="https://images.unsplash.com/photo-1509773896068-7fd415d91e2e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmlnaHQlMjBza3l8ZW58MHx8MHx8fDA%3D"
                   class="mx-auto object-cover rounded-full h-16 w-16  border-2 border-white dark:border-gray-800"
                 />
               </a>
-              <p class="mt-2 text-xl font-medium text-gray-800 ">
-                Amine
-              </p>
-              <p class="mb-4 text-xs text-gray-400">email</p>
+              <p class="mt-2 text-xl font-medium text-gray-800 ">Amine</p>
+              <p class="mb-4 text-xs text-gray-400">email...</p>
               <p class="p-2 px-4 text-xs text-white bg-black rounded-full">
                 saller
               </p>
               <div class="w-full p-2 mt-4 rounded-lg">
                 <div class="flex items-center justify-between text-sm text-gray-600">
                   <p class="flex flex-col">
-                    Products
-                    <span class="font-bold text-black ">34</span>
+                    Your Products
+                    <span class="font-bold text-black ">
+                      {prodseller.length}
+                    </span>
                   </p>
                   <p class="flex flex-col">
-                    top Product 
+                    top Product
                     <span class="font-bold text-black ">
                       {datatoprate.length}
                     </span>
                   </p>
                   <p class="flex flex-col">
                     Rating
-                    <span class="font-bold text-black ">
-                      calcule rate 
-                    </span>
+                    <span class="font-bold text-black ">calculating ..</span>
                   </p>
                 </div>
               </div>

@@ -22,6 +22,7 @@ import Wishlist from './pages/Wishlist.jsx';
 import Products from './pages/Products.jsx';
 import Bestproduct from './pages/Bestproduct';
 import CategoryProduct from './pages/CategoryProduct.jsx';
+import Editsaller from "./seller/Editsaler.jsx";
 
 function App() {
 
@@ -29,16 +30,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<Login />} /> */}
         <Route path="/Signin" element={<Signin />} />
         <Route path="/UpdateUser" element={<UpdateUser />} />
         <Route path="/CheckAllusers" element={<CheckAllusers />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/About" element={<AboutUs />} />
         <Route path="/NotFound" element={<NotFound />} />
-        {/* <Route path="/Cloudinary" element={<Cloudinary />} /> */}
         <Route path="/AddProduct" element={<AddProduct />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/client" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/bestproduct"  element={<Bestproduct />} />
@@ -53,6 +52,7 @@ function App() {
         <Route path="/all" element={<All/>}/>
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/paiment" element={<Payment/>}/>
+        <Route path="/saler/edit" element={<Editsaller/>}/>
 
 
         
