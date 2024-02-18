@@ -29,7 +29,7 @@ function NavbarAdmin() {
           <li style={{ marginLeft: '20px' }}><a href="">See ALL Product</a></li> {/* Add margin-left for spacing */}
           <Link to={'/ProfileAdmin'} style={{ marginLeft: '20px' }}><a href="">Menu</a></Link> {/* Add margin-left for spacing */}
 
-          <li style={{ marginLeft: '20px', color: 'red' }}><a onClick={()=>{logout()}} href="">Log out</a></li> {/* Add margin-left for spacing */}
+          <li style={{ marginLeft: '20px', color: 'red' }}><a onClick={()=>{logout()}} href="/">Log out</a></li> {/* Add margin-left for spacing */}
         </ul>
       </div>
       <div className="flex justify-between items-center w-[395px]">

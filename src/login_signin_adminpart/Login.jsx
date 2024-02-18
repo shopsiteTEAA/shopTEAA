@@ -19,7 +19,6 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // State for user data
   const [userData, setUserData] = useState(null);
 
   const notifySuccess = () => toast.success("Login successful");
@@ -39,8 +38,24 @@ function Login() {
             firstName: decoded.firstName,
             lastName: decoded.lastName,
           });
-          navigate("/seller");
+          navigate("/saler");
           notifySuccess();
+        }else if(decoded.role === "Admin"){
+          setUserData({
+            id: decoded.id,
+            firstname: decoded.firstName,
+            lastname:decoded.lastname,
+          })
+          navigate('/Profileadmin')
+          notifySuccess()
+        }else if(decoded.role === "Client"){
+          setUserData({
+            id: decoded.id,
+            firstName: decoded.firstName,
+            lastName: decoded.lastName,
+          });
+          navigate('/Client')
+          notifySuccess()
         }
       })
       .catch((error) => {

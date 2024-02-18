@@ -35,7 +35,7 @@ function Signin() {
       <br></br>
       <br></br>
 
-      <section class="bg-gray-50 dark:bg-gray-900">
+      <section class="bg-white ">
         <img
           src={loginImage}
           alt="logo"

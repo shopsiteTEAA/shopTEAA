@@ -42,7 +42,22 @@ const Product = sequelize.define(
 const ImgProduct = sequelize.define(
   "imgproduct",
   {
-    image: {
+    image1: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-8044861-6430770.png',
+    },
+    image2: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-8044861-6430770.png',
+    },
+    image3: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-8044861-6430770.png',
+    },
+    image4: {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: 'https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-8044861-6430770.png',
@@ -168,8 +183,8 @@ ImgProduct.belongsTo(Product ,{ foreignKey: 'productIdproduct' , onDelete: 'CASC
 Product.hasMany(ImgProduct)
 ColorProduct.belongsTo(Product ,{ foreignKey: 'productIdproduct' , onDelete: 'CASCADE' });
 Product.hasMany(ColorProduct)
-User.belongsToMany(Product, { through: Panier });
-Product.belongsToMany(User, { through: Panier });
+Panier.belongsTo(User, { foreignKey: 'userIduser' , onDelete: 'CASCADE' });
+Panier.belongsTo(Product, { foreignKey: 'productIdproduct', onDelete: 'CASCADE' });
 // realtion between saler 
 Product.belongsTo(User, { foreignKey: 'userIduser' , onDelete: 'CASCADE' });
 User.hasMany(Product, { foreignKey: 'userIduser', onDelete: 'CASCADE' });
@@ -181,7 +196,7 @@ ReviewRate.belongsTo(User,{ foreignKey: 'userIduser', onDelete: 'CASCADE' });
 ReviewRate.belongsTo(Product,{ foreignKey: 'productIdproduct' , onDelete: 'CASCADE' });
 
 
-sequelize.sync({alter:true});
+sequelize.sync({alter : true});
 
 module.exports = {
   Product :Product,
@@ -191,8 +206,6 @@ module.exports = {
   ImgProduct :ImgProduct,
   ColorProduct :ColorProduct,
   User :User
-
-
 }
 
 

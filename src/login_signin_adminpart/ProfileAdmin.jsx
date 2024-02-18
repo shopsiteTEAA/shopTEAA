@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
     Card,
     CardHeader,
@@ -12,6 +12,8 @@ import NavbarAdmin from '../Ccomponents/NavbarAdmin.jsx';
 import LeftsidebarAdmin from '../Ccomponents/LeftsidebarAdmin.jsx'
 
 function ProfileAdmin() {
+    const info=useContext('userData')
+    console.log(info,"info")
   return (
     <div>
  <MinHeader />

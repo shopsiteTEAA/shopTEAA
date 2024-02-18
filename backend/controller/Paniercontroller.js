@@ -4,7 +4,7 @@ module.exports = {
   getAllcarts: async (req, res) => {
     const {id} = req.params
     try {
-      const carts = await Panier.getallpanier(id)
+      const carts = await Panier.getallpanier(Number (id))
       res.status(200).json(carts)
     } catch (err) {
       console.log(err);
@@ -24,8 +24,8 @@ module.exports = {
   addtoCart: async (req, res) => {
     const obj ={
       sum : req.body.sum,
-      user_iduser : req.params.idu,
-      product_idproduct : req.params.idp
+      userIduser : req.params.idu,
+      productIdproduct : req.params.idp
     }
     try {
       const newCart = await Panier.addtopanier(obj);

@@ -12,7 +12,13 @@ module.exports={
           imgurlmain: req.body.imgurlmain,
           quantity: req.body.quantity,
           description: req.body.description,
-          userIduser : req.params.id
+          userIduser : req.params.id,
+          image :{
+                image1 : req.body.image1,
+                image2 : req.body.image2,
+                image3 : req.body.image3,
+                image4 : req.body.image4
+          }
         };
     
         try {
@@ -149,5 +155,4 @@ module.exports={
         }
     }
 
-
-}
+} 
