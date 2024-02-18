@@ -11,7 +11,8 @@ import Fotter from "../Ccomponents/Fotter";
 // export const usercontext = createContext()
 const MainPageSaller = () => {
   const [data, setdata] = useState([]);
-  useEffect(() => {
+  const [datatoprate,setDatatoprate] =useState ([]);
+  useEffect( () => {
     axios
       .get(`http://localhost:3000/saler/newestproductStore`)
       .then((data) => {
@@ -21,6 +22,14 @@ const MainPageSaller = () => {
       .catch((err) => {
         console.log("err", err);
       });
+
+      axios.get(`http://localhost:3000/saler/toprateprod`)
+      .then((data)=>{
+        setDatatoprate(data.data)
+      })
+      .catch((err)=>{
+        console.log('err',err);
+      })
   }, []);
   console.log(data);
 
@@ -30,7 +39,6 @@ const MainPageSaller = () => {
         <MinHeader />
         <Navbar />
       </div>
-      {/* card */}
       <div className=" mt-10 ml-31  w-full h-full">
         <div className=" text-center mt-4 w-full items-center h-full flex justify-center">
 
@@ -51,7 +59,7 @@ const MainPageSaller = () => {
               <p class="mt-2 text-xl font-medium text-gray-800 ">
                 Amine
               </p>
-              <p class="mb-4 text-xs text-gray-400">Nantes</p>
+              <p class="mb-4 text-xs text-gray-400">email</p>
               <p class="p-2 px-4 text-xs text-white bg-black rounded-full">
                 saller
               </p>
@@ -62,15 +70,15 @@ const MainPageSaller = () => {
                     <span class="font-bold text-black ">34</span>
                   </p>
                   <p class="flex flex-col">
-                    Followers
+                    top Product 
                     <span class="font-bold text-black ">
-                      455
+                      {datatoprate.length}
                     </span>
                   </p>
                   <p class="flex flex-col">
                     Rating
                     <span class="font-bold text-black ">
-                      9.3
+                      calcule rate 
                     </span>
                   </p>
                 </div>

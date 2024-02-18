@@ -13,7 +13,7 @@ function Images(){
       },[]);
 
     return (
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center w-[600px]">
             <div className="flex flex-col justify-between mt-4 w-[200px]">
             <div className="w-[150px] m-2">
           <img className="p-2 hover:scale-125" src="https://s3-alpha-sig.figma.com/img/1490/1cca/de638588f27b571d7565fbaacfe57243?Expires=1708905600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aprO1cEka9l9udTtLN83ImZzwerQcjBDIY-oaczoJHipySxD0r8mGI3HQ4MyMt3bcH0UritxOxBUWOX61t4hUJP8DDyr5hLOTkUjdMRGeTurAdT23XkQR3cOvrqrzksBluATVpk4BquBAs93AUY37BG1R3VN70bJsa~4cRgyuI7PjGwX-rNFDtuX1CsQOjUovkWehRhGx4ypMSYj3kUhMrVQF4phjwLL6KWfsYjVu0OjCIr65ESJEadjTeSQqYK-Ia3q-XvcwCDnBzkFDdTPX1SzH1ux8I8EE6F8w5bp4Q-3x4-Q3Ed-NsXwmm6UReeb0GG2rd6MCZnYU~4BOGbJhA__" />
