@@ -8,7 +8,7 @@ import {
 import { Navigate, useNavigate } from "react-router-dom";
 
 
-function Navbar() {
+function Navbar1() {
   const navigate =useNavigate()
   return (
     <div className="h-[38px] w-[1170px] flex justify-between items-center mx-auto mt-10">
@@ -47,4 +47,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Navbar1;
