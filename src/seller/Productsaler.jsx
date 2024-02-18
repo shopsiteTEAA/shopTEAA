@@ -89,15 +89,15 @@ const Productsaler = () => {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200  font-semibold">
-                    {data?.map((ele,) => (
+                    {data?.map((ele) => (
                       <tr key={ele.idproduct}>
                         <td className="px-16 py-4 whitespace-nowrap">
                           <div className="flex items-center">
                             <div className="flex-shrink-0 h-10 w-10">
                               <img
                                 className="h-10 w-10 rounded-full"
-                                src={ele.imageurlmain}
-                                alt=""
+                                src={ele.imgurlmain}
+                                
                               />
                             </div>
                             <div className="ml-4">

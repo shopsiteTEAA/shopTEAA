@@ -4,7 +4,7 @@ module.exports = {
   getAllcarts: async (req, res) => {
     const {id} = req.params
     try {
-      const carts = await Panier.getallpanier(id)
+      const carts = await Panier.getallpanier(Number (id))
       res.status(200).json(carts)
     } catch (err) {
       console.log(err);

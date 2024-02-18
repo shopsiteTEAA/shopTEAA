@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faHeart, faStar } from "@fortawesome/free-regular-svg-icons";
 
 const ProductCard = ({data}) => {
+  
 
 
   return (

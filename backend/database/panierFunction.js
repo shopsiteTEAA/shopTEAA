@@ -1,11 +1,22 @@
-const { Panier } = require("../database/sequalise.js");
+const { Panier,Product,ColorProduct,ImgProduct } = require("../database/sequalise.js");
 
 
   //get all product from panier
-  const getallpanier =(id)=>{
-  return Panier.findAll({ where: {userIduser:id} })
-   }
-   
+   const getallpanier = async (id) => {
+    try{
+      console.log(Product.findAll);
+    const results = Panier.findAll({
+      where: { userIduser: id },
+      include: [{ model: Product, include: [ColorProduct, ImgProduct] }],
+    });
+    return results 
+    }
+    catch(err){
+      throw err;
+    }
+  };
+  
+  
   //to delete one product from panier
 
    const deletefrompanier =(id,oneProduct)=>{

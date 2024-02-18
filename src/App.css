@@ -28,6 +28,24 @@
   color: #61dafb;
 }
 
+.time{
+display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-content: space-around;
+    align-items: center;
+    gap: 10px;
+
+}
+b{
+  padding-top: 20px;
+  color: red;
+}
+.img{
+width: 270px;
+height: 250px;
+border-radius: 4px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,6 +53,8 @@
   to {
     transform: rotate(360deg);
   }
+
+
 }
 
 
