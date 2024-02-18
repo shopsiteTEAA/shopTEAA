@@ -4,6 +4,9 @@ import Navbar from "../Ccomponents/Navbar";
 import axios from "axios";
 import loginImage from "../images/image.png";
 import NavbarUser from "../Ccomponents/NavbarUser";
+import { Link } from "react-router-dom";
+
+
 
 function Signin() {
   const [firstname, setFirstName] = useState("");
@@ -221,14 +224,16 @@ function Signin() {
                       pwd: password,
                     });
                   }}
+                  Link to={'/Login'}
                 >
                   Create an account
                 </button>
                 <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                   Already have an account?{" "}
                   <a
-                    href="#"
+                    href="/"
                     class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    Link to={'/'}
                   >
                     Login here
                   </a>
