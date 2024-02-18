@@ -4,7 +4,7 @@ const database = process.env.DATABASE;
 const username = process.env.USERNAME;
 const pwd = process.env.PWD;
 
-const sequelize = new Sequelize("teaa", "root", "21018965", {
+const sequelize = new Sequelize("teaa", "root", "choclata", {
   host: "localhost",
   dialect: "mysql",
 });
@@ -180,8 +180,8 @@ ImgProduct.belongsTo(Product ,{ foreignKey: 'productIdproduct' , onDelete: 'CASC
 Product.hasMany(ImgProduct)
 ColorProduct.belongsTo(Product ,{ foreignKey: 'productIdproduct' , onDelete: 'CASCADE' });
 Product.hasMany(ColorProduct)
-User.belongsToMany(Product, { through: Panier });
-Product.belongsToMany(User, { through: Panier });
+Panier.belongsTo(User, { foreignKey: 'userIduser' , onDelete: 'CASCADE' });
+Panier.belongsTo(Product, { foreignKey: 'productIdproduct', onDelete: 'CASCADE' });
 // realtion between saler 
 Product.belongsTo(User, { foreignKey: 'userIduser' , onDelete: 'CASCADE' });
 User.hasMany(Product, { foreignKey: 'userIduser', onDelete: 'CASCADE' });
@@ -193,7 +193,7 @@ ReviewRate.belongsTo(User,{ foreignKey: 'userIduser', onDelete: 'CASCADE' });
 ReviewRate.belongsTo(Product,{ foreignKey: 'productIdproduct' , onDelete: 'CASCADE' });
 
 
-sequelize.sync({alter:true});
+sequelize.sync();
 
 module.exports = {
   Product :Product,
