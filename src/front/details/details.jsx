@@ -6,7 +6,7 @@ function Images(){
     const[product,setProduct]=useState([])
 
     useEffect((id) => {
-        axios.get("http://localhost:3000/saler/getallprod/${id}")
+        axios.get("http://localhost:3000/saler/getallprod/${id}" )
         .then((res) => {
           setProduct(res.data)
         })
