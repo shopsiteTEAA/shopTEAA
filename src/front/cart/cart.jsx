@@ -44,6 +44,9 @@ function Cart() {
     return quantity * price;
   };
 
+  
+
+
   return (
     <div>
       <Navbar />
@@ -78,7 +81,7 @@ function Cart() {
                   const quantityP = parseInt(e.target.value);
                   setData((myData) => {
                     const newData = [...myData];
-                    newData[i].quantity = isNaN(quantityP) ? 1 : quantityP;
+                    newData[i].sum = isNaN(quantityP) ? 1 : quantityP;
                     return newData;
                   });
                 }}
@@ -114,7 +117,8 @@ function Cart() {
           <h3 className="ml-5 mt-6">
             Subtotal:
             {data.reduce(
-              (tota, e) => tota + total(e.product.quantity || 1, e.product.initialprice),
+              (tota, e) =>
+              tota + total(e.sum, e.product.initalprice),
               0
             )}{" "}
             $
@@ -125,12 +129,11 @@ function Cart() {
           </h3>
           <hr className="text-gray-300 w-5/6" />
           <h3 className="ml-5 mt-6">
-            Total:
             {data.reduce(
-              (tota, e) => tota + total(e.product.quantity || 1, e.product.initialprice),
+              (tota, e) =>
+                tota + total(e.sum, e.product.initalprice),
               0
-            )}{" "}
-            $
+            )}
           </h3>
           <button
             onClick={() => navigate("/paiment")}
