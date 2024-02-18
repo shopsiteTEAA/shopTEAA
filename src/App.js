@@ -57,7 +57,6 @@ function App() {
         <Route path="/all" element={<All/>}/>
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/paiment" element={<Payment/>}/>
-        <Route path="/Profileadmin" element={<ProfileAdmin/>}/>
         {/* <Route path="/homepageadmin" element={<HomepageAdmin/>}/> */}
 
 
