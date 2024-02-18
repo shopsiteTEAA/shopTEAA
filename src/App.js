@@ -25,6 +25,7 @@ import CategoryProduct from './pages/CategoryProduct.jsx';
 import StatisticsAdmin from "./login_signin_adminpart/StatisticsAdmin.jsx";
 import ProfileAdmin from "./login_signin_adminpart/ProfileAdmin.jsx";
 import HomepageAdmin from "./login_signin_adminpart/HomepageAdmin.jsx";
+import UpdateList from "./login_signin_adminpart/UpdateList.jsx";
 
 function App() {
 
@@ -52,7 +53,7 @@ function App() {
         <Route path='/saler/updateprod/:idprod' element={<UpdateProduct/>}/>
         <Route path="/" element={<Login/>}/>
         <Route path="/Signin" element={<Signin/>}/>
-        <Route path="/UpdateUser" element={<UpdateUser/>}/>
+        <Route path="/UpdateUseradmin" element={<UpdateList/>}/>
         <Route path="/all" element={<All/>}/>
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/paiment" element={<Payment/>}/>

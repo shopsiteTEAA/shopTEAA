@@ -6,14 +6,16 @@ import Fotter from "../Ccomponents/Fotter.jsx";
 import image1 from "./assests/capp1.png"
 import image2 from "./assests/Capp 2.png"
 import image3 from "./assests/Capp 3.png"
+import Navbar1 from "../Ccomponents/Navbar1.jsx";
 
 const AboutUs = () => {
   return (
     <div>
       <MinHeader />
-      <Navbar />
+      <Navbar1 />
       <div className=" bg-white py-12 flex flex-col lg:flex-row">
         <div className="max-w-4xl mx-auto px-4 lg:mr-10 lg:w-1/2">
+          <br></br><br></br><br></br><br></br>
           <h2 className="text-7xl font-bold text-gray-800 mb-4">Our Story</h2>
           <p className="text-lg text-gray-700 mb-6">
             launced in 2015 ,Exclusive is North Africa premier online shoping

@@ -11,7 +11,6 @@ function CheckAllusers() {
   const navigate =useNavigate()
   const [cookies, setCookies, removeCookie] = useCookies(["token"]);
   const tokn = cookies.token;
-
   const headers = {
     Authorization: `Bearer ${tokn}`,
   };
@@ -211,6 +210,8 @@ function CheckAllusers() {
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       onClick={()=>{
                         updateTheUser(ele.iduser)
+                        navigate('/UpdateUseradmin');
+
                       }}
                     >
                       Edit user
