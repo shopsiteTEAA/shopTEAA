@@ -5,10 +5,13 @@ import {
   faCartShopping,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 
+
 function NavbarUser() {
+
+  const navigate=useNavigate()
   const cookies=new Cookies('token')
   const logout = () => {
     cookies.remove('token')
@@ -24,7 +27,9 @@ function NavbarUser() {
             <a href="Home">Home</a>
           </li>
           <li><a href="">See All Products</a></li>
-          <li><a href="">About us</a></li>
+          <li><a onClick={()=>{navigate('/About') }}>About us</a></li>
+          <li><a href='/contact'>Contact</a></li>
+
           <li><a onClick={()=>{logout()}} href="">Login</a></li>
         </ul>
       </div>

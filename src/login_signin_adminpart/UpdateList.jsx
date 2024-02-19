@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import MinHeader from '../Ccomponents/MinHeader';
 import Navbar from '../Ccomponents/Navbar';
-import Leftsidebar from '../Ccomponents/Leftsidebar';
+import LeftsidebarAdmin from '../Ccomponents/LeftsidebarAdmin';
 import axios from 'axios';
 import { jwtDecode } from "jwt-decode"; 
 import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import NavbarAdmin from '../Ccomponents/NavbarAdmin';
 
 
 
@@ -48,11 +49,11 @@ function UpdateList() {
         <div>
             <div>
                 <MinHeader />
-                <Navbar />
+                <NavbarAdmin />
             </div>
         
             <div className="flex mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
-                <Leftsidebar />
+                <LeftsidebarAdmin />
                 <div className="flex flex-col items-center w-full max-w-lg">
                     <h2 className="text-2xl font-bold mb-4">Update Profile</h2>
                     <div className="mb-4">

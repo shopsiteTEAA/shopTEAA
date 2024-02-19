@@ -5,8 +5,10 @@ import { BsTruck } from 'react-icons/bs';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function GamepadDetails() {
+function GamepadDetails({data}) {
   const [sum, setSum] = useState(1);
+  const arr = {data}
+ console.log( arr.data[0],'this in description');
 
   const handleAdd = () => {
     axios.post(`http://localhost:3000/panier/addtoCart/1/1`,
@@ -19,7 +21,7 @@ function GamepadDetails() {
     <div className="w-2/4 h-72 ml-4 font-semibold p-4 bg-white">
       <div>
         <i>
-          <h1 className="text-2xl font-semibold">Havic HV G-92 Gamepad</h1>
+          <h1 className="text-2xl font-semibold">{arr.data[0].name}</h1>
         </i>
       </div>
       <div className="flex items-center gap-2">
@@ -28,10 +30,10 @@ function GamepadDetails() {
             <FontAwesomeIcon key={index} icon={faStar} />
           ))}
         </button>
-        <div className="flex-auto">(150 Reviews)</div>
+        <div className="flex-auto">{arr.data[0].rate}</div>
       </div>
 
-      <div className="mt-4 text-2xl font-semibold text-black"> $192.00 </div>
+      <div className="mt-4 text-2xl font-semibold text-black"> {arr.data[0].currentprice} </div>
 
       <div className="flex flex-col mt-4">
         <div id="colorChoice" className="flex gap-4 items-center">
@@ -44,8 +46,8 @@ function GamepadDetails() {
 
         <div className="mt-7 text-sm leading-7 text-black">
           <p>
-            PlayStation 5 Controller Skin High-quality vinyl with air channel adhesive for easy
-            bubble-free install & mess-free removal Pressure-sensitive.
+          {arr.data[0].details}
+
           </p>
         </div>
 

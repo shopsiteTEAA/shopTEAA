@@ -5,8 +5,10 @@ import { jwtDecode } from 'jwt-decode';
 import axios from "axios";
 import Fotter from "../Ccomponents/Fotter";
 import { useCookies } from 'react-cookie';
+import { useNavigate } from "react-router-dom";
 
 const Editsaler = () => {
+  const navigate = useNavigate()
   const [newfirstname, setNewFirstName] = useState("");
   const [newlastname, setNewLastName] = useState("");
   const [newemail, setNewEmail] = useState("");
@@ -17,10 +19,9 @@ const Editsaler = () => {
   
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const token = cookies.token;
-  // const decodetoken=jwtDecode(token).id
-
+  const decodetoken=jwtDecode(token).id
   const updatee = () => {
-    axios.put(`http://localhost:3000/user/updateuser/${1}`, {
+    axios.put(`http://localhost:3000/user/updateuser/${decodetoken}`, {
         firstname: newfirstname,
         lastname: newlastname,
         email: newemail,
@@ -31,6 +32,7 @@ const Editsaler = () => {
       })
       .then(() => {
         console.log("updated");
+        navigate('/saler')
       })
       .catch(() => {
         console.log("error");

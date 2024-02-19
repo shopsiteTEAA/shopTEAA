@@ -4,16 +4,22 @@ import Navbar from "../Ccomponents/Navbar";
 import axios from "axios";
 import Fotter from "../Ccomponents/Fotter";
 import { useNavigate } from "react-router";
+import { useCookies } from 'react-cookie';
+import { jwtDecode } from "jwt-decode";
 
-// createContext ,useContext,
-// import TablesProd from "./TablesProd";
 
-// export const usercontext = createContext()
 const MainPageSaller = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+  const token = cookies.token;
+  const decodetoken=jwtDecode(token)
+
+  console.log(decodetoken);
   const navigate = useNavigate()
   const [data, setdata] = useState([]);
   const [datatoprate, setDatatoprate] = useState([]);
   const [prodseller, setProdseller] = useState([]);
+  const [userinfo,setUserInfo] = useState(decodetoken)
+  console.log(userinfo);
   useEffect(() => {
     axios
       .get(`http://localhost:3000/saler/newestproductStore`)
@@ -28,7 +34,7 @@ const MainPageSaller = () => {
     axios
       .get(`http://localhost:3000/saler/toprateprod`)
       .then((data) => {
-        setDatatoprate(data.data);
+        setDatatoprate(data);
       })
       .catch((err) => {
         console.log("err", err);
@@ -70,8 +76,8 @@ const MainPageSaller = () => {
                   class="mx-auto object-cover rounded-full h-16 w-16  border-2 border-white dark:border-gray-800"
                 />
               </a>
-              <p class="mt-2 text-xl font-medium text-gray-800 ">Amine</p>
-              <p class="mb-4 text-xs text-gray-400">email...</p>
+              <p class="mt-2 text-xl font-medium text-gray-800 ">{userinfo.firstname}</p>
+              <p class="mb-4 text-xs text-gray-400">{userinfo.email}</p>
               <p class="p-2 px-4 text-xs text-white bg-black rounded-full">
                 saller
               </p>

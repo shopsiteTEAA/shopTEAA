@@ -5,25 +5,34 @@ import Fotter from "../Ccomponents/Fotter";
 import CategoryCards from "../components/CategoryCards/CategoryCards";
 import axios from "axios";
 import NotFound from "../handlerPages/NotFound.jsx";
+import { useNavigate } from "react-router-dom";
 
 const WelcomePage = () => {
 const [datastore , setDataSotre] = useState([])
 const [toprate,setToprate] = useState([])
-useEffect(async()=>{
- try{
-  const data  = await axios.get(`http://localhost:3000/saler/newestproductStore`);
-  const datatop  = await axios.get(`http://localhost:3000/saler/toprateprod`);
-    setDataSotre(data);
-    setToprate(datatop);
-  }
-  catch(err){
-     return <NotFound/>
+const navigate = useNavigate()
+useEffect(()=>{
+  const getdata = async()=>{
+    try{
+      const data  = await axios.get(`http://localhost:3000/saler/newestproductStore`);
+      const datatop  = await axios.get(`http://localhost:3000/saler/toprateprod`);
+        setDataSotre(data.data);
+        setToprate(datatop.data);
+      }
+      catch(err){
+         return <NotFound/>
+      }
   }
 
+  getdata()
 },[])
 
 console.log(datastore,'datastore');
 console.log(toprate,'toprate');
+
+const detailsprod =(id)=>{
+  navigate(`/all/${id}`)
+}
 
   return (
     <div>
@@ -81,7 +90,7 @@ console.log(toprate,'toprate');
                 >
                   <img
                   onClick={()=>{
-
+                      detailsprod(ele.idproduct)
                   }}
                     loading="lazy"
                     src={ele.imgurlmain}
@@ -91,10 +100,8 @@ console.log(toprate,'toprate');
                     {ele.name} 
                   </div>
                   <div className="flex gap-3 justify-between mt-2 whitespace-nowrap">
-                    <div className="text-red-500">${ele.price}</div>
-                    <div className="flex-auto text-black">
-                      ${ele.discountedPrice}
-                    </div>
+                    <div className="text-red-500">{ele.currentprice} DT</div>
+                    
                   </div>
                   <div className="flex gap-2 justify-between mt-2 text-sm font-semibold text-black whitespace-nowrap">
                     <span>{ele.name}</span>

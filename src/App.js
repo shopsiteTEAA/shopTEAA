@@ -24,7 +24,10 @@ import Bestproduct from './pages/Bestproduct';
 import CategoryProduct from './pages/CategoryProduct.jsx';
 import Editsaller from "./seller/Editsaler.jsx";
 import WelcomePage from "./seller/WelcomePage.jsx";
-import ProfileAdmin from "./login_signin_adminpart/ProfileAdmin.jsx"
+import StatisticsAdmin from "./login_signin_adminpart/StatisticsAdmin.jsx";
+import ProfileAdmin from "./login_signin_adminpart/ProfileAdmin.jsx";
+import HomepageAdmin from "./login_signin_adminpart/HomepageAdmin.jsx";
+import UpdateList from "./login_signin_adminpart/UpdateList.jsx";
 
 function App() {
 
@@ -32,7 +35,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={<WelcomePage/>}/>
+        <Route path="/" element={<Login />} />
+      <Route path="/salerhome" element={<WelcomePage/>}/>
         <Route path="/Signin" element={<Signin />} />
         <Route path="/UpdateUser" element={<UpdateUser />} />
         <Route path="/CheckAllusers" element={<CheckAllusers />} />
@@ -49,18 +53,16 @@ function App() {
         <Route path='/saler/addProduct' element={<AddProduct/>}/>
         <Route path='/saler/allProduct' element={<Productsaler/>}/>
         <Route path='/saler/updateprod/:idprod' element={<UpdateProduct/>}/>
-        {/* <Route path="/" element={<Login/>}/> */}
         <Route path="/Signin" element={<Signin/>}/>
-        <Route path="/UpdateUser" element={<UpdateUser/>}/>
-        <Route path="/all" element={<All/>}/>
+        <Route path="/UpdateUseradmin" element={<UpdateList/>}/>
+        <Route path="/all/:idprod" element={<All/>}/>
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/paiment" element={<Payment/>}/>
-        <Route path="/Profileadmin" element={<ProfileAdmin/>}/>
-        {/* <Route path="/homepageadmin" element={<HomepageAdmin/>}/> */}
+        <Route path="/homepageadmin" element={<HomepageAdmin/>}/>
         <Route path="/saler/edit" element={<Editsaller/>}/>
-        {/* <Route path="/StatisticsAdmin" element={<StatisticsAdmin />} /> */}
-        {/* <Route path="/ProfileAdmin" element={<ProfileAdmin />} /> */}
-        {/* <Route path="/Login" element={<Login />} /> */}
+        <Route path="/StatisticsAdmin" element={<StatisticsAdmin />} />
+        <Route path="/ProfileAdmin" element={<ProfileAdmin />} />
+        
         
 
       </Routes>

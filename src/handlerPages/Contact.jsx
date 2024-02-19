@@ -1,13 +1,13 @@
 import React from 'react'
-import Navbar from '../Ccomponents/Navbar';
-import MinHeader from "../Ccomponents/MinHeader"
+import MinHeader from "../Ccomponents/MinHeader.jsx"
 import Fotter from '../Ccomponents/Fotter';
+import Navbar1 from '../Ccomponents/Navbar1';
 
 const Contact = () => {
   return (
     <div>
          <MinHeader/>
-      <Navbar/>
+      <Navbar1/>
         
       <div class="container my-12 mx-auto px-2 md:px-4">
 

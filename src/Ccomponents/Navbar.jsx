@@ -14,14 +14,13 @@ function Navbar() {
     cookies.remove("token");
     window.location.href = "/Login";
   };
-
   return (
     <div className="h-[38px] w-[1100px] flex justify-between items-center mx-auto mt-10">
       <div className="h-[24px] w-[550px] flex justify-between items-center">
         <h1 className="font-bold ">Exclusive</h1>
         <ul className="w-[367px] flex justify-between items-center  text-sm/[24px] font-semibold  ">
           <li>
-            <Link to={"/saler"}>
+            <Link to={"/salerhome"}>
               <a>Home</a>
             </Link>
           </li>
