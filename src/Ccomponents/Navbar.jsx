@@ -6,24 +6,50 @@ import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 function Navbar() {
+  const cookies = new Cookies("token");
+  const logout = () => {
+    cookies.remove("token");
+    window.location.href = "/Login";
+  };
+
   return (
     <div className="h-[38px] w-[1100px] flex justify-between items-center mx-auto mt-10">
       <div className="h-[24px] w-[550px] flex justify-between items-center">
-        <h1 className="font-bold    ">Exclusive</h1>
+        <h1 className="font-bold ">Exclusive</h1>
         <ul className="w-[367px] flex justify-between items-center  text-sm/[24px] font-semibold  ">
           <li>
-            <Link to={'/saler'}><a>Home</a></Link>
+            <Link to={"/saler"}>
+              <a>Home</a>
+            </Link>
           </li>
           <li>
-            <Link to={'/saler'}><span className="text-red-500">My Zone</span></Link>
+            <Link to={"/saler"}>
+              <span className="text-red-500">My Zone</span>
+            </Link>
           </li>
-          
-          
-          <Link to={'/saler/addProduct'}><li><a className="text-red-500">Add Product</a></li></Link>
-          <Link to={'/saler/allProduct'}><li><a className="text-red-500">ALL Product</a></li></Link>
-          <li><a href="">Log out</a></li>
+
+          <Link to={"/saler/addProduct"}>
+            <li>
+              <a className="text-red-500">Add Product</a>
+            </li>
+          </Link>
+          <Link to={"/saler/allProduct"}>
+            <li>
+              <a className="text-red-500">ALL Product</a>
+            </li>
+          </Link>
+          <li>
+            <a
+              onClick={() => {
+                logout();
+              }}
+            >
+              Log out
+            </a>
+          </li>
         </ul>
       </div>
       <div className="flex justify-between items-center w-[395px]">

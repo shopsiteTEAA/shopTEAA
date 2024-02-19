@@ -8,10 +8,10 @@ import MainPageSaller from './seller/MainPageSaller.jsx';
 import AddProduct from './seller/AddProduct.jsx';
 import Productsaler from './seller/Productsaler.jsx';
 import UpdateProduct from './seller/UpdateProduct.jsx';
-import Login from './login_signin/Login.jsx';
-import Signin from './login_signin/Signin.jsx';
-import UpdateUser from './login_signin/UpdateUser.jsx';
-import CheckAllusers from './login_signin/CheckAllusers.jsx';
+import Login from './login_signin_adminpart/Login.jsx';
+import Signin from './login_signin_adminpart/Signin.jsx';
+import UpdateUser from './login_signin_adminpart/UpdateUser.jsx';
+import CheckAllusers from './login_signin_adminpart/CheckAllusers.jsx';
 import All from "./front/details/All.jsx";
 import Payment from "./front/cart/payment.jsx";
 import Contact from './handlerPages/Contact.jsx'
@@ -23,6 +23,8 @@ import Products from './pages/Products.jsx';
 import Bestproduct from './pages/Bestproduct';
 import CategoryProduct from './pages/CategoryProduct.jsx';
 import Editsaller from "./seller/Editsaler.jsx";
+import WelcomePage from "./seller/WelcomePage.jsx";
+import ProfileAdmin from "./login_signin_adminpart/ProfileAdmin.jsx"
 
 function App() {
 
@@ -30,6 +32,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+      <Route path="/" element={<WelcomePage/>}/>
         <Route path="/Signin" element={<Signin />} />
         <Route path="/UpdateUser" element={<UpdateUser />} />
         <Route path="/CheckAllusers" element={<CheckAllusers />} />
@@ -46,16 +49,20 @@ function App() {
         <Route path='/saler/addProduct' element={<AddProduct/>}/>
         <Route path='/saler/allProduct' element={<Productsaler/>}/>
         <Route path='/saler/updateprod/:idprod' element={<UpdateProduct/>}/>
-        <Route path="/" element={<Login/>}/>
+        {/* <Route path="/" element={<Login/>}/> */}
         <Route path="/Signin" element={<Signin/>}/>
         <Route path="/UpdateUser" element={<UpdateUser/>}/>
         <Route path="/all" element={<All/>}/>
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/paiment" element={<Payment/>}/>
+        <Route path="/Profileadmin" element={<ProfileAdmin/>}/>
+        {/* <Route path="/homepageadmin" element={<HomepageAdmin/>}/> */}
         <Route path="/saler/edit" element={<Editsaller/>}/>
-
-
+        {/* <Route path="/StatisticsAdmin" element={<StatisticsAdmin />} /> */}
+        {/* <Route path="/ProfileAdmin" element={<ProfileAdmin />} /> */}
+        {/* <Route path="/Login" element={<Login />} /> */}
         
+
       </Routes>
     </BrowserRouter>
   );

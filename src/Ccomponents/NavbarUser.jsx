@@ -5,10 +5,15 @@ import {
   faCartShopping,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
-
+import { Link } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 function NavbarUser() {
-
+  const cookies=new Cookies('token')
+  const logout = () => {
+    cookies.remove('token')
+    window.location.href = '/Login'
+  };
 
   return (
     <div className="h-[38px] w-[1170px] flex justify-between items-center mx-auto mt-10">
@@ -20,7 +25,7 @@ function NavbarUser() {
           </li>
           <li><a href="">See All Products</a></li>
           <li><a href="">About us</a></li>
-          <li><a href="">Login</a></li>
+          <li><a onClick={()=>{logout()}} href="">Login</a></li>
         </ul>
       </div>
       <div className="flex justify-between items-center w-[395px]">

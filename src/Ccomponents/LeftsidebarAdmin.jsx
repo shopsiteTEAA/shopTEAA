@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
+
 
 function Leftsidebar() {
     
@@ -12,16 +14,16 @@ function Leftsidebar() {
     const toggleMyOrdersSubMenu = () => {
       setIsMyOrdersSubMenuOpen(!isMyOrdersSubMenuOpen);
     };
+    const navigate = useNavigate();
+
 
   return (
     
         <div className="flex w-1/3" >
           <div className="bg-white text-black w-1/1 max-w-xs flex flex-col">
-            {/* Sidebar header */}
             <div className="flex items-center justify-center h-16 border-b border-gray-800">
             </div>
     
-            {/* Sidebar items */}
             <ul className="py-4 w-1/1">
               <li className="px-4 py-2 hover:bg-gray-300 cursor-pointer">
                 <a href="#" className="flex items-center ">
@@ -33,18 +35,17 @@ function Leftsidebar() {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                   </svg>
-                  Manage My Account
+                  Manage Account
                 </a>
-                {/* Submenu for Manage My Account */}
                 <ul className={`pl-4 ${isManageAccountSubMenuOpen ? '' : 'hidden'}`}>
                   <li className="py-2 hover:bg-gray-300 cursor-pointer">
-                    <a href="#">My Profile</a>
+                    <a href="#" onClick={()=>{navigate('/ProfileAdmin')}}>My Profile</a>
                   </li>
                   <li className="py-2 hover:bg-gray-300 cursor-pointer">
-                    <a href="#">Address Book</a>
+                    <a href="#" onClick={()=>{navigate('/CheckAllusers')}}>Accounts Manager</a>
                   </li>
                   <li className="py-2 hover:bg-gray-300 cursor-pointer">
-                    <a href="#">My Payments</a>
+                    <a href="#" onClick={()=>{navigate('/StatisticsAdmin')}}>Website Statistics</a>
                   </li>
                 </ul>
               </li>
@@ -55,17 +56,15 @@ function Leftsidebar() {
                   </svg>
                   My Orders
                 </a>
-                {/* Submenu for My Orders */}
                 <ul className={`pl-4 ${isMyOrdersSubMenuOpen ? '' : 'hidden'}`}>
                   <li className="py-2 hover:bg-gray-300 cursor-pointer">
-                    <a href="#">My Returns</a>
+                    <a href="#">Complaints</a>
                   </li>
                   <li className="py-2 hover:bg-gray-300 cursor-pointer">
-                    <a href="#">My Cancellations</a>
+                    <a href="#">Requests</a>
                   </li>
                 </ul>
               </li>
-              {/* Add more items similarly */}
             </ul>
           </div>
     
@@ -75,6 +74,5 @@ function Leftsidebar() {
 
   )
 }
-{/* <div className="flex-1">
-          </div> */}
+
 export default Leftsidebar
